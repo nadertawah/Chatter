@@ -8,10 +8,10 @@
 import UIKit
 import FirebaseAuth
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate
+{
 
     var window: UIWindow?
-    private let dataPersistant = CoreData()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var vc : UIViewController
         
         //Auto Login
-        vc = Auth.auth().currentUser != nil ? BaseTabBar(dataPersistant: dataPersistant) : LoginRegisterView(dataPersistant: dataPersistant)
+        vc = Auth.auth().currentUser != nil ? BaseTabBar() : LoginRegisterView()
             
         window.rootViewController = vc
         self.window = window
@@ -58,7 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        dataPersistant.saveContext()
     }
 
 

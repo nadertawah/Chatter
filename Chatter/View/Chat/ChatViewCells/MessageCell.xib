@@ -17,16 +17,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYa-cM-rHp" userLabel="Back View">
-                        <rect key="frame" x="5" y="3" width="222" height="99"/>
+                        <rect key="frame" x="5" y="3" width="91" height="99"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1R-nr-frR">
-                                <rect key="frame" x="5" y="5" width="212" height="59"/>
+                                <rect key="frame" x="5" y="5" width="81" height="59"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnc-hh-Za2">
-                                <rect key="frame" x="5" y="74" width="212" height="20"/>
+                                <rect key="frame" x="5" y="74" width="81" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,6 @@
                     <constraint firstAttribute="trailing" secondItem="XYa-cM-rHp" secondAttribute="trailing" constant="5" id="4gF-dS-EnG"/>
                     <constraint firstItem="XYa-cM-rHp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="8Ik-On-LdQ"/>
                     <constraint firstAttribute="bottom" secondItem="XYa-cM-rHp" secondAttribute="bottom" constant="3" id="EFG-44-wqe"/>
-                    <constraint firstItem="XYa-cM-rHp" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.6" id="Jfh-hH-NQe"/>
                     <constraint firstItem="XYa-cM-rHp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Xus-lK-Yso"/>
                 </constraints>
                 <variation key="default">

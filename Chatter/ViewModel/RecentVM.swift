@@ -13,7 +13,10 @@ class RecentVM
     
     init()
     {
-        getFromDB()
+        DispatchQueue.global(qos: .userInteractive).async
+        { [weak self] in
+            self?.getFromDB()
+        }
     }
     //MARK: - Var(s)
     private(set) var recentChats = BehaviorRelay<[(friend : User, lastMessage : Message, unreadCount: Int?)]>(value: [])

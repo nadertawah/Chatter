@@ -6,24 +6,62 @@
 //
 
 import UIKit
+import RxSwift
 
-class ProfileView: UIViewController {
+class ProfileView: UIViewController
+{
+    
+    //MARK: - IBOutlet(s)
 
-    override func viewDidLoad() {
+    @IBOutlet weak var imgView: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    @IBOutlet weak var createdAtLabel: UILabel!
+    
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - IBAction(s)
+    @IBAction func logOutBtnPressed(_ sender: UIButton)
+    {
+        VM.logout
+        {
+            [weak self] in
+            let loginV = LoginRegisterView()
+            self?.navigationController?.isNavigationBarHidden = true
+            self?.navigationController?.setViewControllers([loginV], animated: true)
+        }
     }
-    */
-
+    
+    //MARK: - Var(s)
+    var VM = ProfileVM()
+    let bag = DisposeBag()
+    
+    //MARK: - Helper Funcs
+    func setUI()
+    {
+        title = "Profile"
+        
+        //bind to VM
+        VM.user.subscribe
+        {
+            [weak self] user in
+            DispatchQueue.main.async
+            {
+                guard let self = self, let user = user.element else {return}
+                self.imgView.image = UIImage.imageFromString(imgSTR: (user.avatar) )?.circleMasked
+                self.nameLabel.text = "Name: " + (user.fullName)
+                self.emailLabel.text = "Email: " + (user.email)
+                self.createdAtLabel.text = "Created at: " + (user.createdAt.localString())
+            }
+        }.disposed(by: bag)
+    }
+    
 }

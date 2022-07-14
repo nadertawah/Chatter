@@ -12,7 +12,10 @@ class UsersVM
 {
     init()
     {
-        getUsersFromDB()
+        DispatchQueue.global(qos: .userInteractive).async
+        {[weak self] in
+            self?.getUsersFromDB()
+        }
     }
     
     //MARK: - Var(s)

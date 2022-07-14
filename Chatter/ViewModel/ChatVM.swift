@@ -13,10 +13,15 @@ class ChatVM
 {
     init(_ chatWith : User)
     {
-        otherUser = chatWith
-        chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: otherUser.userID)
-        getMessagesFromDB()
-        resetUnreadCounter()
+        
+        self.otherUser = chatWith
+        self.chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: self.otherUser.userID)
+        
+        DispatchQueue.global(qos: .userInteractive).async
+        {
+            self.getMessagesFromDB()
+            self.resetUnreadCounter()
+        }
     }
     
     //MARK: - Var(s)
@@ -126,13 +131,15 @@ class ChatVM
             progress(Float(receivedSize) / Float(totalSize))
         }
         completionHandler:
-        {
+        {[weak self]
             result in
+            guard let self = self else {return}
             switch result
             {
             case .success(let value):
                 self.storeImageLocally(image: value.image, forURL: localFileURL)
                 completion(UIImage(contentsOfFile: localFileURL.path)?.resizeImageTo(size: CGSize(width: 200, height: 200)))
+                self.messages.accept(self.messages.value)
             case .failure(let error):
                 print(error)
         }

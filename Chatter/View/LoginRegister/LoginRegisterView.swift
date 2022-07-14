@@ -33,17 +33,6 @@ class LoginRegisterView: UIViewController
         setUI()
     }
     
-    init(dataPersistant : DataPersistantProtocol)
-    {
-        self.VM = LoginRegisterVM(dataPersistant: dataPersistant)
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder)
-    {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     //MARK: - IBAction(s)
     
     @IBAction func loginRegisterBtnPressed(_ sender: UIButton)
@@ -82,7 +71,7 @@ class LoginRegisterView: UIViewController
                             guard let self = self else {return}
                             if result != nil
                             {
-                                let vc = BaseTabBar(dataPersistant: self.VM.dataPersistant)
+                                let vc = BaseTabBar()
                                 vc.modalPresentationStyle = .fullScreen
                                 self.present(vc, animated: true)
                             }
@@ -103,7 +92,7 @@ class LoginRegisterView: UIViewController
     
     
     //MARK: - Var(s)
-    var VM : LoginRegisterVM!
+    var VM = LoginRegisterVM()
     var selectedImg = false
     var avatarTapGestureRecogniser = UITapGestureRecognizer()
     let imgController = UIImagePickerController()

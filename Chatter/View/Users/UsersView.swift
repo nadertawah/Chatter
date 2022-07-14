@@ -39,9 +39,12 @@ class UsersView: UIViewController, UIScrollViewDelegate
         VM.users.bind(to: tableView.rx.items(cellIdentifier: UserCell.reuseIdentfier, cellType: UserCell.self))
         {
             idx,user,cell in
-            cell.nameLabel.text = user.fullName
-            cell.emailLabel.text = user.email
-            cell.imgView.image = UIImage.imageFromString(imgSTR: user.avatar)?.circleMasked
+            DispatchQueue.main.async
+            {
+                cell.nameLabel.text = user.fullName
+                cell.emailLabel.text = user.email
+                cell.imgView.image = UIImage.imageFromString(imgSTR: user.avatar)?.circleMasked
+            }
             
         }.disposed(by: bag)
         
@@ -50,14 +53,18 @@ class UsersView: UIViewController, UIScrollViewDelegate
         
         //set did select row at
         tableView.rx.itemSelected.subscribe(onNext:
-                                                                {
+        {
             [weak self] indexPath in
-            guard let self = self else {return}
-            let user = self.VM.users.value[indexPath.row]
+            DispatchQueue.main.async
+            {
+                guard let self = self else {return}
+                let user = self.VM.users.value[indexPath.row]
+                
+                let chatVC = BaseNavBar.init(rootViewController: ChatView(chatWith: user))
+                chatVC.modalPresentationStyle = .fullScreen
+                self.present(chatVC, animated: true)
+            }
             
-            let chatVC = BaseNavBar.init(rootViewController: ChatView(chatWith: user))
-            chatVC.modalPresentationStyle = .fullScreen
-            self.present(chatVC, animated: true)
         }).disposed(by: bag)
         
     }

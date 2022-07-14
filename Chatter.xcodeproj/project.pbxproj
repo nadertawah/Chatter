@@ -16,6 +16,7 @@
 		75A7B14828804169009FD8C2 /* ImageViewerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B14628804169009FD8C2 /* ImageViewerView.xib */; };
 		75A7B14E28805495009FD8C2 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B14C28805495009FD8C2 /* UserCell.swift */; };
 		75A7B14F28805495009FD8C2 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B14D28805495009FD8C2 /* UserCell.xib */; };
+		75A7B15128806846009FD8C2 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B15028806846009FD8C2 /* ProfileVM.swift */; };
 		75AC099D287D2E7E00662465 /* FireBaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099C287D2E7E00662465 /* FireBaseStore.swift */; };
 		75AC099F287D2F9A00662465 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099E287D2F9A00662465 /* Message.swift */; };
 		75AC09A1287D378E00662465 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC09A0287D378E00662465 /* UIViewController.swift */; };
@@ -27,10 +28,8 @@
 		75AC09AF287D5ECD00662465 /* RecentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75AC09AD287D5ECD00662465 /* RecentViewCell.xib */; };
 		75E90D0E287BBEE9005A9150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D0D287BBEE9005A9150 /* AppDelegate.swift */; };
 		75E90D10287BBEE9005A9150 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D0F287BBEE9005A9150 /* SceneDelegate.swift */; };
-		75E90D18287BBEE9005A9150 /* Chatter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D16287BBEE9005A9150 /* Chatter.xcdatamodeld */; };
 		75E90D1A287BBEEB005A9150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E90D19287BBEEB005A9150 /* Assets.xcassets */; };
 		75E90D1D287BBEEB005A9150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E90D1B287BBEEB005A9150 /* LaunchScreen.storyboard */; };
-		75E90D2E287D0645005A9150 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D2A287D0644005A9150 /* CoreData.swift */; };
 		75E90D31287D0645005A9150 /* DataPersistantProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D2D287D0644005A9150 /* DataPersistantProtocol.swift */; };
 		75E90D37287D0AB0005A9150 /* LoginRegisterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D36287D0AB0005A9150 /* LoginRegisterVM.swift */; };
 		75E90D39287D0AC0005A9150 /* RecentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D38287D0AC0005A9150 /* RecentVM.swift */; };
@@ -69,6 +68,7 @@
 		75A7B14628804169009FD8C2 /* ImageViewerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewerView.xib; sourceTree = "<group>"; };
 		75A7B14C28805495009FD8C2 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		75A7B14D28805495009FD8C2 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		75A7B15028806846009FD8C2 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		75AC099C287D2E7E00662465 /* FireBaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseStore.swift; sourceTree = "<group>"; };
 		75AC099E287D2F9A00662465 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		75AC09A0287D378E00662465 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -81,11 +81,9 @@
 		75E90D0A287BBEE9005A9150 /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E90D0D287BBEE9005A9150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75E90D0F287BBEE9005A9150 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		75E90D17287BBEE9005A9150 /* Chatter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chatter.xcdatamodel; sourceTree = "<group>"; };
 		75E90D19287BBEEB005A9150 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75E90D1C287BBEEB005A9150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75E90D1E287BBEEB005A9150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75E90D2A287D0644005A9150 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		75E90D2D287D0644005A9150 /* DataPersistantProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPersistantProtocol.swift; sourceTree = "<group>"; };
 		75E90D36287D0AB0005A9150 /* LoginRegisterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterVM.swift; sourceTree = "<group>"; };
 		75E90D38287D0AC0005A9150 /* RecentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVM.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 			children = (
 				75AC099B287D2E6000662465 /* FireBaseStore */,
 				75E90D6A287D1CC1005A9150 /* FireBaseDB */,
-				75E90D69287D1CB3005A9150 /* CoreData */,
 				75E90D2D287D0644005A9150 /* DataPersistantProtocol.swift */,
 			);
 			path = Services;
@@ -266,6 +263,7 @@
 				75E90D38287D0AC0005A9150 /* RecentVM.swift */,
 				75E90D3A287D0AD0005A9150 /* UsersVM.swift */,
 				75E90D3C287D0ADE005A9150 /* ChatVM.swift */,
+				75A7B15028806846009FD8C2 /* ProfileVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -273,7 +271,6 @@
 		75E90D35287D07B9005A9150 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				75E90D16287BBEE9005A9150 /* Chatter.xcdatamodeld */,
 				75E90D57287D0C1C005A9150 /* User.swift */,
 				75AC099E287D2F9A00662465 /* Message.swift */,
 			);
@@ -350,14 +347,6 @@
 				7585769C287EEAE00079A969 /* UITableViewCell.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		75E90D69287D1CB3005A9150 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				75E90D2A287D0644005A9150 /* CoreData.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		75E90D6A287D1CC1005A9150 /* FireBaseDB */ = {
@@ -505,11 +494,9 @@
 				75AC09A3287D3A9F00662465 /* UIApplication.swift in Sources */,
 				75E90D60287D0D7B005A9150 /* Date.swift in Sources */,
 				75E90D3D287D0ADE005A9150 /* ChatVM.swift in Sources */,
-				75E90D2E287D0645005A9150 /* CoreData.swift in Sources */,
 				75E90D0E287BBEE9005A9150 /* AppDelegate.swift in Sources */,
 				75E90D10287BBEE9005A9150 /* SceneDelegate.swift in Sources */,
 				75E90D37287D0AB0005A9150 /* LoginRegisterVM.swift in Sources */,
-				75E90D18287BBEE9005A9150 /* Chatter.xcdatamodeld in Sources */,
 				75AC099F287D2F9A00662465 /* Message.swift in Sources */,
 				75AC09A8287D4A6500662465 /* BaseNavBar.swift in Sources */,
 				75E90D50287D0B87005A9150 /* ChatView.swift in Sources */,
@@ -524,6 +511,7 @@
 				75A7B13E287FCC05009FD8C2 /* MessageCell.swift in Sources */,
 				75E90D3B287D0AD0005A9150 /* UsersVM.swift in Sources */,
 				75E90D31287D0645005A9150 /* DataPersistantProtocol.swift in Sources */,
+				75A7B15128806846009FD8C2 /* ProfileVM.swift in Sources */,
 				75E90D39287D0AC0005A9150 /* RecentVM.swift in Sources */,
 				75E90D64287D13D9005A9150 /* FileManager.swift in Sources */,
 				75E90D68287D166F005A9150 /* DateFormatter.swift in Sources */,
@@ -748,19 +736,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		75E90D16287BBEE9005A9150 /* Chatter.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				75E90D17287BBEE9005A9150 /* Chatter.xcdatamodel */,
-			);
-			currentVersion = 75E90D17287BBEE9005A9150 /* Chatter.xcdatamodel */;
-			path = Chatter.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 75E90D02287BBEE9005A9150 /* Project object */;
 }
