@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct Helper
 {
-    func getChatRoomID(ID1: String, ID2: String) -> String
+    static func getChatRoomID(ID1: String, ID2: String) -> String
     {
         let compariosnResult = ID1.compare(ID2).rawValue
         if(compariosnResult == 1){return ID2 + ID1}
@@ -18,7 +18,7 @@ struct Helper
     }
     
     //Auth
-    func getCurrentUserID() -> String
+    static func getCurrentUserID() -> String
     {
         Auth.auth().currentUser?.uid ?? ""
     }

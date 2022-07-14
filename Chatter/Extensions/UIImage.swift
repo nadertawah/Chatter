@@ -18,10 +18,10 @@ extension UIImage
     var circleMasked: UIImage?
     {
         UIGraphicsBeginImageContextWithOptions(breadthSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
         guard let cgImage = cgImage?.cropping(to: CGRect(origin: CGPoint(x: isLandscape ? floor((size.width - size.height) / 2) : 0, y: isPortrait  ? floor((size.height - size.width) / 2) : 0), size: breadthSize)) else { return nil }
         UIBezierPath(ovalIn: breadthRect).addClip()
         UIImage(cgImage: cgImage).draw(in: breadthRect)
-        UIGraphicsEndImageContext()
         return UIGraphicsGetImageFromCurrentImageContext()
     }
     

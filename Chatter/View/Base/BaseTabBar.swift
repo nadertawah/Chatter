@@ -61,9 +61,9 @@ class BaseTabBar:  UITabBarController
         //TODO: - set default selected index
         
         //set tabBar attributes
-        self.tabBar.tintColor = .white
-        
-        
+        self.tabBar.tintColor = Constants.chatterGreenColor
+        self.tabBar.backgroundColor = Constants.chatterGreyColor
+        self.tabBar.unselectedItemTintColor = .white
         //set delegate
        // self.delegate = self
         

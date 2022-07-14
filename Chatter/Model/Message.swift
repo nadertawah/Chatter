@@ -50,7 +50,7 @@ struct Message
     //MARK: - Helper Funcs
     func messageDictionary() -> NSDictionary {
         
-        let sentAt = Date.chatterStringFromDate(date)
+        let sentAt = date.chatterStringFromDate()
         
         return NSDictionary(objects: [message,               senderId,               sentAt,             messageId,               type.rawValue],
                             forKeys: [Constants.kMESSAGE as NSCopying, Constants.kSENDERID as NSCopying, Constants.kDATE as NSCopying, Constants.kMESSAGEID as NSCopying, Constants.kMESSAGETYPE as NSCopying])

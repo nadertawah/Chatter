@@ -9,4 +9,7 @@ target 'Chatter' do
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Database'
-pod 'Kingfisher'end
+pod 'Kingfisher'
+pod 'RxSwift'
+pod 'RxCocoa'
+end
