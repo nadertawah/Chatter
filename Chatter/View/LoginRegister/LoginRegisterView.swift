@@ -117,9 +117,10 @@ class LoginRegisterView: UIViewController
         let lefttSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe))
         lefttSwipeGesture.direction = .left
         
-        
+        //add gestures recogniser
         self.view.addGestureRecognizer(rightSwipeGesture)
         self.view.addGestureRecognizer(lefttSwipeGesture)
+        self.hideKeyboardWhenTappedAround()
         
         //tap to choose avatar image
         avatarIMG.isUserInteractionEnabled = true

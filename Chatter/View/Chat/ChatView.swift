@@ -92,6 +92,9 @@ class ChatView: UIViewController
     //MARK: - Helper Funcs
     func setUI()
     {
+        //hide keyboard
+        self.hideKeyboardWhenTappedAround()
+        
         //set navBar
         setNavBar()
         

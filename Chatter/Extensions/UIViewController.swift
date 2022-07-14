@@ -20,3 +20,18 @@ extension UIViewController
         }
     }
 }
+
+//hide keyBoard when typing in textfields
+extension UIViewController
+{
+    func hideKeyboardWhenTappedAround()
+    {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func hideKeyboard()
+    {
+        view.endEditing(true)
+    }
+}
