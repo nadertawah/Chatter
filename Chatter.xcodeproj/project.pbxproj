@@ -14,6 +14,8 @@
 		75A7B143287FE4EA009FD8C2 /* ImgMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B141287FE4EA009FD8C2 /* ImgMessageCell.xib */; };
 		75A7B14728804169009FD8C2 /* ImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B14528804169009FD8C2 /* ImageViewerView.swift */; };
 		75A7B14828804169009FD8C2 /* ImageViewerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B14628804169009FD8C2 /* ImageViewerView.xib */; };
+		75A7B14E28805495009FD8C2 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B14C28805495009FD8C2 /* UserCell.swift */; };
+		75A7B14F28805495009FD8C2 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B14D28805495009FD8C2 /* UserCell.xib */; };
 		75AC099D287D2E7E00662465 /* FireBaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099C287D2E7E00662465 /* FireBaseStore.swift */; };
 		75AC099F287D2F9A00662465 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099E287D2F9A00662465 /* Message.swift */; };
 		75AC09A1287D378E00662465 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC09A0287D378E00662465 /* UIViewController.swift */; };
@@ -65,6 +67,8 @@
 		75A7B141287FE4EA009FD8C2 /* ImgMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImgMessageCell.xib; sourceTree = "<group>"; };
 		75A7B14528804169009FD8C2 /* ImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerView.swift; sourceTree = "<group>"; };
 		75A7B14628804169009FD8C2 /* ImageViewerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewerView.xib; sourceTree = "<group>"; };
+		75A7B14C28805495009FD8C2 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		75A7B14D28805495009FD8C2 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		75AC099C287D2E7E00662465 /* FireBaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseStore.swift; sourceTree = "<group>"; };
 		75AC099E287D2F9A00662465 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		75AC09A0287D378E00662465 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,15 @@
 				75A7B14628804169009FD8C2 /* ImageViewerView.xib */,
 			);
 			path = ImageViewer;
+			sourceTree = "<group>";
+		};
+		75A7B14B28805466009FD8C2 /* UsersViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				75A7B14C28805495009FD8C2 /* UserCell.swift */,
+				75A7B14D28805495009FD8C2 /* UserCell.xib */,
+			);
+			path = UsersViewCells;
 			sourceTree = "<group>";
 		};
 		75AC099B287D2E6000662465 /* FireBaseStore */ = {
@@ -291,6 +304,7 @@
 			children = (
 				75E90D49287D0B63005A9150 /* UsersView.swift */,
 				75E90D4A287D0B63005A9150 /* UsersView.xib */,
+				75A7B14B28805466009FD8C2 /* UsersViewCells */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -435,6 +449,7 @@
 				75E90D1A287BBEEB005A9150 /* Assets.xcassets in Resources */,
 				75E90D47287D0B3D005A9150 /* RecentView.xib in Resources */,
 				75E90D4C287D0B63005A9150 /* UsersView.xib in Resources */,
+				75A7B14F28805495009FD8C2 /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +515,7 @@
 				75E90D50287D0B87005A9150 /* ChatView.swift in Sources */,
 				75AC09A6287D4A5300662465 /* BaseTabBar.swift in Sources */,
 				75E90D5B287D0C65005A9150 /* Constants.swift in Sources */,
+				75A7B14E28805495009FD8C2 /* UserCell.swift in Sources */,
 				75E90D5D287D0CEF005A9150 /* Helper.swift in Sources */,
 				75E90D46287D0B3D005A9150 /* RecentView.swift in Sources */,
 				7585769D287EEAE00079A969 /* UITableViewCell.swift in Sources */,

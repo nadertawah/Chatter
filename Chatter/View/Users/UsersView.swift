@@ -6,24 +6,68 @@
 //
 
 import UIKit
+import RxSwift
 
-class UsersView: UIViewController {
-
-    override func viewDidLoad() {
+class UsersView: UIViewController, UIScrollViewDelegate
+{
+    //MARK: - IBOutlet(s)
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    //MARK: - IBAction(s)
+    
+    
+    //MARK: - Var(s)
+    var VM = UsersVM()
+    let bag = DisposeBag()
+    
+    //MARK: - Helper Funcs
+    func setUI()
+    {
+        title = "Find Friends"
+        
+        //register cell
+        tableView.register(UINib(nibName: UserCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: UserCell.reuseIdentfier)
+        
+        //bind vm
+        VM.users.bind(to: tableView.rx.items(cellIdentifier: UserCell.reuseIdentfier, cellType: UserCell.self))
+        {
+            idx,user,cell in
+            cell.nameLabel.text = user.fullName
+            cell.emailLabel.text = user.email
+            cell.imgView.image = UIImage.imageFromString(imgSTR: user.avatar)?.circleMasked
+            
+        }.disposed(by: bag)
+        
+        //set tableView delegate
+        tableView.rx.setDelegate(self).disposed(by: bag)
+        
+        //set did select row at
+        tableView.rx.itemSelected.subscribe(onNext:
+                                                                {
+            [weak self] indexPath in
+            guard let self = self else {return}
+            let user = self.VM.users.value[indexPath.row]
+            
+            let chatVC = BaseNavBar.init(rootViewController: ChatView(chatWith: user))
+            chatVC.modalPresentationStyle = .fullScreen
+            self.present(chatVC, animated: true)
+        }).disposed(by: bag)
+        
     }
-    */
+}
 
+
+extension UsersView : UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        100
+    }
 }

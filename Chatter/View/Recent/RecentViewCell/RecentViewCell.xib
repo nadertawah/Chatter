@@ -20,20 +20,20 @@
                         <rect key="frame" x="5" y="2" width="503" height="102"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ftb-8L-EjG">
-                                <rect key="frame" x="20" y="11.5" width="82" height="79"/>
+                                <rect key="frame" x="10" y="11.5" width="82" height="79"/>
                                 <color key="tintColor" red="0.1566192958" green="0.61028906409999994" blue="0.27003673789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ftb-8L-EjG" secondAttribute="height" multiplier="1:1" id="igm-9H-Ebj"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37M-2x-NuT">
-                                <rect key="frame" x="112" y="10" width="59" height="28"/>
+                                <rect key="frame" x="102" y="10" width="59" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpL-e4-WVp">
-                                <rect key="frame" x="112" y="68" width="122" height="24"/>
+                                <rect key="frame" x="102" y="68" width="122" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                             <constraint firstItem="UpL-e4-WVp" firstAttribute="bottom" secondItem="ftb-8L-EjG" secondAttribute="bottom" id="Y49-R7-7bx"/>
                             <constraint firstItem="UpL-e4-WVp" firstAttribute="leading" secondItem="ftb-8L-EjG" secondAttribute="trailing" constant="10" id="aQV-au-Bo5"/>
                             <constraint firstItem="OtT-wh-K8m" firstAttribute="centerY" secondItem="37M-2x-NuT" secondAttribute="centerY" id="hq6-lb-ceG"/>
-                            <constraint firstItem="ftb-8L-EjG" firstAttribute="leading" secondItem="oz2-oi-azo" secondAttribute="leading" constant="20" symbolic="YES" id="w73-Fj-oqC"/>
+                            <constraint firstItem="ftb-8L-EjG" firstAttribute="leading" secondItem="oz2-oi-azo" secondAttribute="leading" constant="10" id="w73-Fj-oqC"/>
                             <constraint firstItem="37M-2x-NuT" firstAttribute="leading" secondItem="ftb-8L-EjG" secondAttribute="trailing" constant="10" id="zLy-BW-ptS"/>
                         </constraints>
                     </view>
