@@ -20,7 +20,6 @@ class ChatVM
         DispatchQueue.global(qos: .userInteractive).async
         {
             self.getMessagesFromDB()
-            self.resetUnreadCounter()
         }
     }
     
@@ -28,6 +27,7 @@ class ChatVM
     private(set) var messages = BehaviorRelay<[Message]>(value: [])
     private(set) var otherUser : User
     private(set) var chatRoomID : String
+    private var unreadCount : Int = 0
     
     //MARK: - intent(s)
     func sendMessage(messageContent: String, type : MessageType)
@@ -41,10 +41,13 @@ class ChatVM
         let chatRoomRefForFriend = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(otherUser.userID).child(chatRoomID)
         let chatRoomRefForCurrentUSer = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(chatRoomID)
         
+        
+        
         //set last message for both users
         chatRoomRefForFriend.child(Constants.kLASTMESSAGE).setValue(message.messageDictionary())
         chatRoomRefForCurrentUSer.child(Constants.kLASTMESSAGE).setValue(message.messageDictionary())
         
+       
         
         //save the message for current user
         chatRoomRefForCurrentUSer.child(Constants.kMESSAGES).child(message.messageId)
@@ -62,8 +65,6 @@ class ChatVM
                 chatRoomRefForFriend.child(Constants.kUNREADCOUNTER).setValue(count == nil ? 1 : count! + 1)
             }
         
-        //reset unread messages counter for current user
-        resetUnreadCounter()
     }
     
     
@@ -78,8 +79,12 @@ class ChatVM
                 {
                     guard let self = self else {return}
                     var msgArr = self.messages.value
-                    msgArr.append(Message(dictionaryMessage))
+                    let message = Message(dictionaryMessage)
+                    msgArr.append(message)
                     self.messages.accept(msgArr)
+                    
+                    //reset unread messages counter for current user
+                    self.resetUnreadCounter()
                 }
             })
     }
@@ -196,5 +201,4 @@ class ChatVM
         
         
     }
-    
 }

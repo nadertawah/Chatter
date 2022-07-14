@@ -41,8 +41,8 @@ struct User
         func userDictionary() -> NSDictionary
     {
             
-            let createdAt = Date.chatterStringFromDate(createdAt)
-            let updatedAt = Date.chatterStringFromDate(updatedAt)
+        let createdAt = createdAt.chatterStringFromDate()
+        let updatedAt = updatedAt.chatterStringFromDate()
             
             return NSDictionary(objects: [userID,               createdAt,               updatedAt,               email,               fullName,               avatar],
                                 forKeys: [Constants.kUSERID as NSCopying, Constants.kCREATEDAT as NSCopying, Constants.kUPDATEDAT as NSCopying, Constants.kEMAIL as NSCopying, Constants.kFULLNAME as NSCopying, Constants.kAVATAR as NSCopying])

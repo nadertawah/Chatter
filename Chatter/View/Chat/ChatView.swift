@@ -243,7 +243,10 @@ class ChatView: UIViewController
             guard let self = self else {return}
             DispatchQueue.main.async
             {
-                self.tableView.scrollToRow(at: IndexPath.init(row: (self.VM.messages.value.count) - 1, section: 0), at: .bottom, animated: false)
+                if !self.VM.messages.value.isEmpty
+                {
+                    self.tableView.scrollToRow(at: IndexPath.init(row: (self.VM.messages.value.count) - 1, section: 0), at: .bottom, animated: false)
+                }
             }
         }.disposed(by: bag)
     }

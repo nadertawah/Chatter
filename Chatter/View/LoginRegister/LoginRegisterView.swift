@@ -53,7 +53,7 @@ class LoginRegisterView: UIViewController
                                 result , error in
                                 if result != nil
                                 {
-                                    self?.showAlert(title: "Error", msg: "Registerd! Swipe to Login.")
+                                    self?.showAlert(title: "", msg: "Registerd! Swipe to Login.")
                                 }
                                 else
                                 {

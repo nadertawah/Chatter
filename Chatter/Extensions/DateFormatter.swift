@@ -14,6 +14,7 @@ extension DateFormatter
         let dateFormat = "yyyyMMddHHmmss"
         
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.init(identifier: "en")
         dateFormatter.timeZone = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
         dateFormatter.dateFormat = dateFormat
         return dateFormatter
