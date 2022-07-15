@@ -11,7 +11,12 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
-
+    
+    // Lock the orientation to portrait mode
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
+    {
+        return .portrait
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
