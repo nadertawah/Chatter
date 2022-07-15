@@ -14,6 +14,7 @@
                 <outlet property="indicator" destination="2Zt-nq-OS1" id="YpC-bc-fnE"/>
                 <outlet property="keyboardConstriant" destination="tiO-GZ-5ke" id="xnA-e0-xzr"/>
                 <outlet property="messageTF" destination="3rD-1W-wuq" id="EoE-eq-Hem"/>
+                <outlet property="navBar" destination="Y1v-bM-5nn" id="TYC-ON-R4C"/>
                 <outlet property="sendBTN" destination="lNp-sL-Wbh" id="AaE-Im-Eu0"/>
                 <outlet property="tableView" destination="sEH-xY-uLf" id="UFz-Lx-CPZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sEH-xY-uLf">
-                    <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="714"/>
                     <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-zJ-xVC">
@@ -92,24 +93,44 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdU-Tx-ICM">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                     <color key="backgroundColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1v-bM-5nn">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <color key="backgroundColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="0.23032088710000001" green="0.22518258869999999" blue="0.31493586299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="barTintColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.23032088710000001" green="0.22518258869999999" blue="0.31493586299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textAttributes>
+                    <textAttributes key="largeTitleTextAttributes">
+                        <color key="textColor" red="0.23032088710000001" green="0.22518258869999999" blue="0.31493586299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem largeTitleDisplayMode="never" id="Bnd-vV-EGU"/>
+                    </items>
+                </navigationBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.2014356366" green="0.19291627119999999" blue="0.28022784080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sEH-xY-uLf" secondAttribute="trailing" id="0SZ-is-bxZ"/>
+                <constraint firstItem="Y1v-bM-5nn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6Vg-hn-41a"/>
+                <constraint firstItem="Y1v-bM-5nn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6nF-mq-WbX"/>
+                <constraint firstAttribute="trailing" secondItem="Y1v-bM-5nn" secondAttribute="trailing" id="EP2-Ug-983"/>
                 <constraint firstItem="TdU-Tx-ICM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Edc-av-2a3"/>
                 <constraint firstItem="sEH-xY-uLf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Idi-sK-1Mo"/>
+                <constraint firstItem="sEH-xY-uLf" firstAttribute="top" secondItem="TdU-Tx-ICM" secondAttribute="bottom" id="Tse-fc-Yev"/>
                 <constraint firstAttribute="trailing" secondItem="TdU-Tx-ICM" secondAttribute="trailing" id="XFE-Pa-Vxh"/>
                 <constraint firstItem="Tgf-zJ-xVC" firstAttribute="top" secondItem="sEH-xY-uLf" secondAttribute="bottom" id="bc5-Co-AFm"/>
-                <constraint firstItem="sEH-xY-uLf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cRw-79-a6E"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tgf-zJ-xVC" secondAttribute="trailing" id="d56-Qf-KcB"/>
+                <constraint firstItem="sEH-xY-uLf" firstAttribute="top" secondItem="Y1v-bM-5nn" secondAttribute="bottom" id="e5Y-rw-S4K"/>
                 <constraint firstItem="TdU-Tx-ICM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fU7-Zh-NmQ"/>
+                <constraint firstItem="Y1v-bM-5nn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fjD-dw-wLs"/>
                 <constraint firstItem="Tgf-zJ-xVC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sVD-kk-Qfe"/>
-                <constraint firstItem="sEH-xY-uLf" firstAttribute="top" secondItem="TdU-Tx-ICM" secondAttribute="bottom" constant="8" symbolic="YES" id="sqU-Bw-sjO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Tgf-zJ-xVC" secondAttribute="bottom" id="tiO-GZ-5ke"/>
+                <constraint firstItem="Y1v-bM-5nn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yL1-Dh-fPv"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
         </view>

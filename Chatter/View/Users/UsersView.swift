@@ -60,9 +60,8 @@ class UsersView: UIViewController, UIScrollViewDelegate
                 guard let self = self else {return}
                 let user = self.VM.users.value[indexPath.row]
                 
-                let chatVC = BaseNavBar.init(rootViewController: ChatView(chatWith: user))
-                chatVC.modalPresentationStyle = .fullScreen
-                self.present(chatVC, animated: true)
+                let chatVC = ChatView(chatWith: user)
+                self.navigationController?.pushViewController(chatVC, animated: true)
             }
             
         }).disposed(by: bag)

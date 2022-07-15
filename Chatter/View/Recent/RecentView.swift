@@ -83,9 +83,8 @@ class RecentView: UIViewController, UIScrollViewDelegate
                 self.VM.readMessages(index: indexPath.row)
                 let user = self.VM.recentChats.value[indexPath.row].friend
                 
-                let chatVC = BaseNavBar.init(rootViewController: ChatView(chatWith: user))
-                chatVC.modalPresentationStyle = .fullScreen
-                self.present(chatVC, animated: true)
+                let chatVC = ChatView(chatWith: user)
+                self.navigationController?.pushViewController(chatVC, animated: true)
             }
             
         }).disposed(by: bag)

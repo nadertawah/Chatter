@@ -17,8 +17,20 @@ class ImageViewerView: UIViewController
     {
         super.viewDidLoad()
         imageView.image = image
+        
+        
     }
-
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
     init(img : UIImage)
     {
         image = img

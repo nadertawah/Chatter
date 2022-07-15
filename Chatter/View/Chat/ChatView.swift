@@ -32,6 +32,8 @@ class ChatView: UIViewController
     
     @IBOutlet weak var keyboardConstriant: NSLayoutConstraint!
     
+    @IBOutlet weak var navBar: UINavigationBar!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -42,6 +44,9 @@ class ChatView: UIViewController
         //add keyboard observer to apply animation
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        //set navBar
+        setNavBar()
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -49,6 +54,10 @@ class ChatView: UIViewController
         //remove the observers
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification , object: nil)
+        
+        //revert navbar and tabbar changes
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     init(chatWith : User)
@@ -109,12 +118,7 @@ class ChatView: UIViewController
     {
         //hide keyboard
         self.hideKeyboardWhenTappedAround()
-        
-       
-
-        //set navBar
-        setNavBar()
-        
+               
         //Register Cells
         tableView.register(UINib(nibName: MessageCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: MessageCell.reuseIdentfier)
         tableView.register(UINib(nibName: ImgMessageCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: ImgMessageCell.reuseIdentfier)
@@ -148,7 +152,7 @@ class ChatView: UIViewController
     
     @objc private func back()
     {
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func keyboardWillShow(_ notification: Notification)
@@ -172,10 +176,15 @@ class ChatView: UIViewController
     
     func setNavBar()
     {
-        self.navigationController?.navigationBar.prefersLargeTitles = false
+        //hide tabbar
+        self.tabBarController?.tabBar.isHidden = true
+        
+        //hide navbar
+        self.navigationController?.navigationBar.isHidden = true
+
         let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left")?.withTintColor(Constants.chatterGreyColor, renderingMode: .alwaysOriginal), style: .done, target: self, action: #selector(back))
         
-        let height = self.navigationController!.navigationBar.frame.height
+        let height = navBar.frame.height
         let avatarView = UIButton(frame: CGRect(x: 0, y: 0, width: height, height: height))
         avatarView.layer.cornerRadius = height / 2
         avatarView.setImage(UIImage.imageFromString(imgSTR: VM.otherUser.avatar)?.resizeImageTo(size: CGSize(width: height, height: height))?.circleMasked, for: .normal)
@@ -186,7 +195,7 @@ class ChatView: UIViewController
         let friendName = UIBarButtonItem(title: VM.otherUser.fullName, style: .done, target: nil, action: nil)
         friendName.tintColor = Constants.chatterGreyColor
         
-        self.navigationController?.navigationBar.topItem?.setLeftBarButtonItems([backBtn, avatar,friendName], animated: true)
+        navBar.topItem?.setLeftBarButtonItems([backBtn, avatar,friendName], animated: true)
     }
     
     func bindVM()
