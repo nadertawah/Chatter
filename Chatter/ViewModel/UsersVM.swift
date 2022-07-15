@@ -37,8 +37,28 @@ class UsersVM
                         var usersArr = self.users.value
                         usersArr.append(user)
                         self.users.accept(usersArr)
+                        
+                        //observe avatar
+                        self.observeAvatar(user.userID)
                     }
                 }
             })
+    }
+    
+    private func observeAvatar(_ friendID: String)
+    {
+        FireBaseDB.sharedInstance.observeAvatar(friendID)
+        {
+            [weak self] avatar in
+            guard let self = self else{return}
+            
+            var usersArr = self.users.value
+            
+            if let indx = usersArr.firstIndex(where: {$0.userID == friendID })
+            {
+                usersArr[indx].avatar = avatar
+                self.users.accept(usersArr)
+            }
+        }
     }
 }

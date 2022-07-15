@@ -14,18 +14,20 @@ class ChatVM
     init(_ chatWith : User)
     {
         
-        self.otherUser = chatWith
-        self.chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: self.otherUser.userID)
+        self.otherUser.accept(chatWith)
+        
+        self.chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: chatWith.userID)
         
         DispatchQueue.global(qos: .userInteractive).async
         {
             self.getMessagesFromDB()
+            self.observeAvatar()
         }
     }
     
     //MARK: - Var(s)
     private(set) var messages = BehaviorRelay<[Message]>(value: [])
-    private(set) var otherUser : User
+    private(set) var otherUser = BehaviorRelay<User>(value: User(userID: "", createdAt: Date(), updatedAt: Date(), email: "", fullName: "", avatar: ""))
     private(set) var chatRoomID : String
     private var unreadCount : Int = 0
     
@@ -38,7 +40,7 @@ class ChatVM
     
     func sendMessage(_ message: Message)
     {
-        let chatRoomRefForFriend = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(otherUser.userID).child(chatRoomID)
+        let chatRoomRefForFriend = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(otherUser.value.userID).child(chatRoomID)
         let chatRoomRefForCurrentUSer = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(chatRoomID)
         
         
@@ -165,8 +167,7 @@ class ChatVM
             
             if snapshot.exists()
             {
-                FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(self.chatRoomID).child(Constants.kUNREADCOUNTER)
-                    .setValue(0)
+                FireBaseDB.sharedInstance.resetUnreadCounter(chatRoomID: self.chatRoomID)
             }
         }
         
@@ -203,5 +204,18 @@ class ChatVM
         }
         
         
+    }
+    
+    func observeAvatar()
+    {
+        FireBaseDB.sharedInstance.observeAvatar(otherUser.value.userID)
+        {
+            [weak self] avatar in
+            guard let self = self else{return}
+            
+            var friend = self.otherUser.value
+            friend.avatar = avatar
+            self.otherUser.accept(friend)
+        }
     }
 }

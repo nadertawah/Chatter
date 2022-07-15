@@ -75,7 +75,7 @@ class ChatView: UIViewController
     //MARK: - IBAction(s)
     @objc private func avatarPressed()
     {
-        guard let img = UIImage.imageFromString(imgSTR:VM.otherUser.avatar)  else {return}
+        guard let img = UIImage.imageFromString(imgSTR:VM.otherUser.value.avatar)  else {return}
         
         let imgViewerVC = ImageViewerView(img: img)
         
@@ -152,6 +152,8 @@ class ChatView: UIViewController
             
             
         }).disposed(by: bag)
+        
+        
     }
     
     @objc private func back()
@@ -190,15 +192,24 @@ class ChatView: UIViewController
         let height = navBar.frame.height
         let avatarView = UIButton(frame: CGRect(x: 0, y: 0, width: height, height: height))
         avatarView.layer.cornerRadius = height / 2
-        avatarView.setImage(UIImage.imageFromString(imgSTR: VM.otherUser.avatar)?.resizeImageTo(size: CGSize(width: height, height: height))?.circleMasked, for: .normal)
         avatarView.addTarget(self, action: #selector(avatarPressed), for: .touchUpInside)
         
         let avatar = UIBarButtonItem(customView: avatarView)
+        avatar.accessibilityIdentifier = "avatarBarBtn"
         
-        let friendName = UIBarButtonItem(title: VM.otherUser.fullName, style: .done, target: nil, action: nil)
+        let friendName = UIBarButtonItem(title: VM.otherUser.value.fullName, style: .done, target: nil, action: nil)
         friendName.tintColor = Constants.chatterGreyColor
         
         navBar.topItem?.setLeftBarButtonItems([backBtn, avatar,friendName], animated: true)
+        
+        
+        //bind friend avatar
+        VM.otherUser.subscribe
+        {
+            guard let friend = $0.element else {return}
+            let img = UIImage.imageFromString(imgSTR: friend.avatar)?.resizeImageTo(size: CGSize(width: height, height: height))?.circleMasked
+            avatar.changeCustomBarBtnImage(img:  img)
+        }.disposed(by: bag)
     }
     
     func bindVM()

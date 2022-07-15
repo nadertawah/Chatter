@@ -48,6 +48,9 @@ class RecentVM
                     
                     //observe unread count
                     self?.observeUnreadCount(chatroomID, friendID)
+                    
+                    //obsereve avatar changes
+                    self?.observeAvatar(friendID)
                 }
                 
             }
@@ -147,13 +150,26 @@ class RecentVM
         }
     }
     
-    
+    func observeAvatar(_ friendID: String)
+    {
+        FireBaseDB.sharedInstance.observeAvatar(friendID)
+        {
+            [weak self] avatar in
+            guard let self = self else{return}
+            
+            var tupleArr = self.recentChats.value
+            
+            if let indx = tupleArr.firstIndex(where: {$0.friend.userID == friendID })
+            {
+                tupleArr[indx].friend.avatar = avatar
+                self.recentChats.accept(tupleArr)
+            }
+        }
+    }
     
     func readMessages(index : Int)
     {
         let chat = self.recentChats.value[index]
-        
-        FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: chat.friend.userID)).child(Constants.kUNREADCOUNTER)
-            .setValue(0)
+        FireBaseDB.sharedInstance.resetUnreadCounter(chatRoomID: Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: chat.friend.userID))
     }
 }

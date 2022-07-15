@@ -17,6 +17,7 @@
 		75A7B14E28805495009FD8C2 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B14C28805495009FD8C2 /* UserCell.swift */; };
 		75A7B14F28805495009FD8C2 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B14D28805495009FD8C2 /* UserCell.xib */; };
 		75A7B15128806846009FD8C2 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B15028806846009FD8C2 /* ProfileVM.swift */; };
+		75A88CE4288188A7002F8D72 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */; };
 		75AC099D287D2E7E00662465 /* FireBaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099C287D2E7E00662465 /* FireBaseStore.swift */; };
 		75AC099F287D2F9A00662465 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099E287D2F9A00662465 /* Message.swift */; };
 		75AC09A1287D378E00662465 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC09A0287D378E00662465 /* UIViewController.swift */; };
@@ -69,6 +70,7 @@
 		75A7B14C28805495009FD8C2 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		75A7B14D28805495009FD8C2 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		75A7B15028806846009FD8C2 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
+		75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		75AC099C287D2E7E00662465 /* FireBaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseStore.swift; sourceTree = "<group>"; };
 		75AC099E287D2F9A00662465 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		75AC09A0287D378E00662465 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				75AC09A0287D378E00662465 /* UIViewController.swift */,
 				75AC09A2287D3A9F00662465 /* UIApplication.swift */,
 				7585769C287EEAE00079A969 /* UITableViewCell.swift */,
+				75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				75E90D50287D0B87005A9150 /* ChatView.swift in Sources */,
 				75AC09A6287D4A5300662465 /* BaseTabBar.swift in Sources */,
 				75E90D5B287D0C65005A9150 /* Constants.swift in Sources */,
+				75A88CE4288188A7002F8D72 /* UIBarButtonItem.swift in Sources */,
 				75A7B14E28805495009FD8C2 /* UserCell.swift in Sources */,
 				75E90D5D287D0CEF005A9150 /* Helper.swift in Sources */,
 				75E90D46287D0B3D005A9150 /* RecentView.swift in Sources */,
