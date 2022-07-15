@@ -29,6 +29,7 @@ class ImageViewerView: UIViewController
     
     override func viewWillDisappear(_ animated: Bool)
     {
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     init(img : UIImage)

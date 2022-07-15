@@ -44,7 +44,9 @@ class ProfileView: UIViewController
     //MARK: - Var(s)
     var VM = ProfileVM()
     let bag = DisposeBag()
-    
+    var avatarTapGestureRecogniser = UITapGestureRecognizer()
+    let imgController = UIImagePickerController()
+
     //MARK: - Helper Funcs
     func setUI()
     {
@@ -63,6 +65,59 @@ class ProfileView: UIViewController
                 self.createdAtLabel.text = "Created at: " + (user.createdAt.localString())
             }
         }.disposed(by: bag)
+        
+        //tap to choose avatar image
+        imgView.isUserInteractionEnabled = true
+        avatarTapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.avatarPressed))
+        self.imgView.addGestureRecognizer(avatarTapGestureRecogniser)
+        
+        imgController.delegate = self
     }
     
+    @objc func avatarPressed()
+    {
+        let alert = UIAlertController(title: "", message: "Please Select an Option", preferredStyle: .actionSheet)
+            
+        let showImgAction = UIAlertAction(title: "Show avatar image", style: .default)
+        {
+            [weak self] _ in
+            guard let self = self , let avatar = UIImage.imageFromString(imgSTR: self.VM.user.value.avatar) else {return}
+            let imgViewer = ImageViewerView(img: avatar)
+            self.navigationController?.pushViewController(imgViewer, animated: true)
+        }
+        
+        let changeImgAction = UIAlertAction(title: "Change avatar image", style: .default)
+        {
+            [weak self] _ in
+            guard let self = self else {return}
+            self.present(self.imgController, animated: true)
+        }
+        
+        alert.addAction(showImgAction)
+        alert.addAction(changeImgAction)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+        
+        self.present(alert, animated: true)
+    }
+}
+
+
+//MARK: - Image Picker delegate funcs
+extension ProfileView : UIImagePickerControllerDelegate , UINavigationControllerDelegate
+{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let imagePicked = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        {
+            imgView.image = imagePicked.circleMasked
+            self.VM.changeAvatar(avatarStr: imagePicked.imageToString())
+        }
+        picker.dismiss(animated: true)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        picker.dismiss(animated: true)
+    }
 }

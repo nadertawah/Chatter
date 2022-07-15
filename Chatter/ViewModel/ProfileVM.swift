@@ -53,4 +53,10 @@ class ProfileVM
                 
             })
     }
+    
+    func changeAvatar(avatarStr : String)
+    {
+        //save to firebase db
+        FireBaseDB.sharedInstance.DBref.child(Constants.kALLUSERS).child(Helper.getCurrentUserID()).child(Constants.kAVATAR).setValue(avatarStr)
+    }
 }

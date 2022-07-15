@@ -16,7 +16,7 @@ extension UIViewController
             let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default)
             alert.addAction(action)
-            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
+            self.present(alert, animated: true)
         }
     }
 }
