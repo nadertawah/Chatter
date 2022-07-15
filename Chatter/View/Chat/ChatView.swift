@@ -75,7 +75,11 @@ class ChatView: UIViewController
     //MARK: - IBAction(s)
     @objc private func avatarPressed()
     {
+        guard let img = UIImage.imageFromString(imgSTR:VM.otherUser.avatar)  else {return}
         
+        let imgViewerVC = ImageViewerView(img: img)
+        
+        self.navigationController?.pushViewController(imgViewerVC, animated: true)
     }
     
     @IBAction func cameraBTNPressed(_ sender: UIButton)
@@ -163,9 +167,11 @@ class ChatView: UIViewController
             {[weak self] in
                 guard let self = self else { return }
                 self.keyboardConstriant.constant = keyboardFrame.cgRectValue.height - self.view.safeAreaInsets.bottom
+                DispatchQueue.main.async
+                {
+                    self.tableView.scrollToRow(at: IndexPath.init(row: (self.VM.messages.value.count) - 1, section: 0), at: .bottom, animated: false)
+                }
             }
-            
-            
         }
     }
     

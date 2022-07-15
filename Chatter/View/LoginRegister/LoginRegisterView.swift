@@ -41,14 +41,14 @@ class LoginRegisterView: UIViewController
                 {
                     if SwipeLBL.text == "Swipe to Login"
                     {
-                        if NameTF.text!.isEmpty || !selectedImg
+                        if NameTF.text!.isEmpty || selectedImg == nil
                         {
                             self.showAlert(title: "Error", msg: "All fields are required including the picture!")
                         }
                         else
                         {
                             //Register new user
-                            VM.register(name: NameTF.text!, email: EmailTF.text!, password: PasswordTF.text!, avatar: avatarIMG.image ?? UIImage())
+                            VM.register(name: NameTF.text!, email: EmailTF.text!, password: PasswordTF.text!, avatar: selectedImg ?? UIImage())
                             { [weak self]
                                 result , error in
                                 if result != nil
@@ -93,7 +93,7 @@ class LoginRegisterView: UIViewController
     
     //MARK: - Var(s)
     var VM = LoginRegisterVM()
-    var selectedImg = false
+    var selectedImg : UIImage?
     var avatarTapGestureRecogniser = UITapGestureRecognizer()
     let imgController = UIImagePickerController()
     
@@ -173,7 +173,7 @@ extension LoginRegisterView : UIImagePickerControllerDelegate , UINavigationCont
         if let imagePicked = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         {
             avatarIMG.image = imagePicked.circleMasked
-            selectedImg = true
+            selectedImg = imagePicked
         }
         picker.dismiss(animated: true)
         
