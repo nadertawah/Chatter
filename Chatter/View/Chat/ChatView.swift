@@ -30,10 +30,25 @@ class ChatView: UIViewController
             
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var keyboardConstriant: NSLayoutConstraint!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         setUI()
+    }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        //add keyboard observer to apply animation
+        NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        //remove the observers
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification , object: nil)
     }
     
     init(chatWith : User)
@@ -95,6 +110,8 @@ class ChatView: UIViewController
         //hide keyboard
         self.hideKeyboardWhenTappedAround()
         
+       
+
         //set navBar
         setNavBar()
         
@@ -132,6 +149,25 @@ class ChatView: UIViewController
     @objc private func back()
     {
         self.dismiss(animated: true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification)
+    {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        {
+            UIView.animate(withDuration: 0.5)
+            {[weak self] in
+                guard let self = self else { return }
+                self.keyboardConstriant.constant = keyboardFrame.cgRectValue.height - self.view.safeAreaInsets.bottom
+            }
+            
+            
+        }
+    }
+    
+    @objc func keyboardWillDisappear(notification: NSNotification?)
+    {
+        keyboardConstriant.constant = 0.0
     }
     
     func setNavBar()

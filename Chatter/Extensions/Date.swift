@@ -78,15 +78,15 @@ extension Date
         
         if (seconds < 24 * 60 * 60)
         {
-            dateFormatter.dateFormat = "HH:mm a"
+            dateFormatter.dateFormat = "hh:mm a"
         }
         else if seconds < 24 * 60 * 60 * 365
         {
-            dateFormatter.dateFormat = "MM-dd HH:mm"
+            dateFormatter.dateFormat = "MM-dd hh:mm"
         }
         else
         {
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
         }
         return dateFormatter.string(from: self)
     }

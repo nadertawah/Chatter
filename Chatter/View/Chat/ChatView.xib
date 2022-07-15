@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,6 +12,7 @@
             <connections>
                 <outlet property="cameraBtn" destination="twT-yC-S2F" id="22x-w3-mxQ"/>
                 <outlet property="indicator" destination="2Zt-nq-OS1" id="YpC-bc-fnE"/>
+                <outlet property="keyboardConstriant" destination="tiO-GZ-5ke" id="xnA-e0-xzr"/>
                 <outlet property="messageTF" destination="3rD-1W-wuq" id="EoE-eq-Hem"/>
                 <outlet property="sendBTN" destination="lNp-sL-Wbh" id="AaE-Im-Eu0"/>
                 <outlet property="tableView" destination="sEH-xY-uLf" id="UFz-Lx-CPZ"/>
@@ -24,15 +24,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sEH-xY-uLf">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sEH-xY-uLf">
                     <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                     <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gs8-1U-10e">
-                    <rect key="frame" x="0.0" y="862" width="414" height="34"/>
-                    <color key="backgroundColor" red="0.2014356366" green="0.19291627119999999" blue="0.28022784080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="tintColor" systemColor="systemRedColor"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-zJ-xVC">
                     <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                     <subviews>
@@ -96,21 +91,25 @@
                         <constraint firstItem="2Zt-nq-OS1" firstAttribute="top" secondItem="Tgf-zJ-xVC" secondAttribute="top" id="ySk-CI-OTL"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdU-Tx-ICM">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                    <color key="backgroundColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.2014356366" green="0.19291627119999999" blue="0.28022784080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sEH-xY-uLf" secondAttribute="trailing" id="0SZ-is-bxZ"/>
+                <constraint firstItem="TdU-Tx-ICM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Edc-av-2a3"/>
                 <constraint firstItem="sEH-xY-uLf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Idi-sK-1Mo"/>
-                <constraint firstAttribute="bottom" secondItem="gs8-1U-10e" secondAttribute="bottom" id="Okz-PJ-qpt"/>
+                <constraint firstAttribute="trailing" secondItem="TdU-Tx-ICM" secondAttribute="trailing" id="XFE-Pa-Vxh"/>
                 <constraint firstItem="Tgf-zJ-xVC" firstAttribute="top" secondItem="sEH-xY-uLf" secondAttribute="bottom" id="bc5-Co-AFm"/>
                 <constraint firstItem="sEH-xY-uLf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cRw-79-a6E"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tgf-zJ-xVC" secondAttribute="trailing" id="d56-Qf-KcB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gs8-1U-10e" secondAttribute="trailing" id="qbJ-el-W2t"/>
+                <constraint firstItem="TdU-Tx-ICM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fU7-Zh-NmQ"/>
                 <constraint firstItem="Tgf-zJ-xVC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sVD-kk-Qfe"/>
+                <constraint firstItem="sEH-xY-uLf" firstAttribute="top" secondItem="TdU-Tx-ICM" secondAttribute="bottom" constant="8" symbolic="YES" id="sqU-Bw-sjO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Tgf-zJ-xVC" secondAttribute="bottom" id="tiO-GZ-5ke"/>
-                <constraint firstItem="gs8-1U-10e" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wxs-Jz-DDu"/>
-                <constraint firstItem="gs8-1U-10e" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="yOE-uC-9fl"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
         </view>
@@ -118,8 +117,5 @@
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

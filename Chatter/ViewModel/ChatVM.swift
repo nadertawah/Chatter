@@ -78,13 +78,16 @@ class ChatVM
                 if let dictionaryMessage = snapshot.value as? NSDictionary
                 {
                     guard let self = self else {return}
+                    
+                    //reset unread messages counter for current user
+                    self.resetUnreadCounter()
+                    
                     var msgArr = self.messages.value
                     let message = Message(dictionaryMessage)
                     msgArr.append(message)
                     self.messages.accept(msgArr)
                     
-                    //reset unread messages counter for current user
-                    self.resetUnreadCounter()
+                    
                 }
             })
     }
