@@ -35,6 +35,11 @@ class LoginRegisterView: UIViewController
     
     //MARK: - IBAction(s)
     
+    @IBAction func emailTfChanged(_ sender: UITextField)
+    {
+        sender.text = sender.text?.lowercased()
+    }
+    
     @IBAction func loginRegisterBtnPressed(_ sender: UIButton)
     {
         if !EmailTF.text!.isEmpty && !PasswordTF.text!.isEmpty
@@ -53,7 +58,7 @@ class LoginRegisterView: UIViewController
                                 result , error in
                                 if result != nil
                                 {
-                                    self?.showAlert(title: "", msg: "Registerd! Swipe to Login.")
+                                    self?.showAlert(title: "Success", msg: "Registerd! Swipe to Login.")
                                 }
                                 else
                                 {

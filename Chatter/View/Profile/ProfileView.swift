@@ -37,6 +37,7 @@ class ProfileView: UIViewController
             let loginV = LoginRegisterView()
             self?.navigationController?.isNavigationBarHidden = true
             self?.navigationController?.setViewControllers([loginV], animated: true)
+            self?.tabBarController?.tabBar.isHidden = true
         }
     }
     
