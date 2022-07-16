@@ -468,10 +468,11 @@ extension ChatView
 
                 let recordSettings =
                 [
-                    AVFormatIDKey : kAudioFormatiLBC,
-                    AVEncoderBitRateKey:12800,
-                    AVLinearPCMBitDepthKey:16,
-                    AVEncoderAudioQualityKey:AVAudioQuality.max.rawValue
+                    AVFormatIDKey : kAudioFormatMPEG4AAC as NSNumber,
+                    AVSampleRateKey : AVAudioSession.sharedInstance().sampleRate as NSNumber,
+                    AVNumberOfChannelsKey : 1 as NSNumber,
+                    AVEncoderBitRatePerChannelKey : 96 * 1_000 as NSNumber,
+                    AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue as NSNumber
                 ] as [String : Any]
 
                 audioRecorder = try AVAudioRecorder(url: url, settings: recordSettings)

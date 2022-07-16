@@ -18,15 +18,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ijh-mB-Nze" userLabel="Back View">
-                        <rect key="frame" x="5" y="0.0" width="250" height="96"/>
+                        <rect key="frame" x="5" y="3" width="250" height="90"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uiv-PM-rY9">
-                                <rect key="frame" x="53" y="31.5" width="179" height="34"/>
+                                <rect key="frame" x="53" y="28.5" width="179" height="34"/>
                                 <color key="tintColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="thumbTintColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeF-dn-NM6">
-                                <rect key="frame" x="10" y="10" width="35" height="76"/>
+                                <rect key="frame" x="10" y="10" width="35" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="xxr-4D-l9H"/>
                                 </constraints>
@@ -38,8 +38,8 @@
                                 </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3d-Tr-5GD">
-                                <rect key="frame" x="186" y="71" width="44" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <rect key="frame" x="188.5" y="67" width="41.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -62,8 +62,8 @@
                 <constraints>
                     <constraint firstItem="Ijh-mB-Nze" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="5I4-xw-8Pn"/>
                     <constraint firstAttribute="trailing" secondItem="Ijh-mB-Nze" secondAttribute="trailing" constant="5" id="WKx-QR-Lnd"/>
-                    <constraint firstItem="Ijh-mB-Nze" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sPl-0O-eWS"/>
-                    <constraint firstAttribute="bottom" secondItem="Ijh-mB-Nze" secondAttribute="bottom" id="uwO-Bd-bcn"/>
+                    <constraint firstItem="Ijh-mB-Nze" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="sPl-0O-eWS"/>
+                    <constraint firstAttribute="bottom" secondItem="Ijh-mB-Nze" secondAttribute="bottom" constant="3" id="uwO-Bd-bcn"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

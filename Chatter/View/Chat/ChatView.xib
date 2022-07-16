@@ -97,6 +97,7 @@
                             </buttonConfiguration>
                             <connections>
                                 <action selector="startVoiceRecord:" destination="-1" eventType="touchDown" id="Inx-7y-g2q"/>
+                                <action selector="stopVoiceRecord:" destination="-1" eventType="touchDragExit" id="0h0-qZ-xf1"/>
                                 <action selector="stopVoiceRecord:" destination="-1" eventType="touchUpInside" id="p4g-sk-YLk"/>
                             </connections>
                         </button>
@@ -124,7 +125,7 @@
                                     <rect key="frame" x="20" y="12" width="309" height="36"/>
                                     <color key="backgroundColor" red="0.33004720409350313" green="0.32268408109953928" blue="0.45129949938167224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <action selector="messageTFChanged:" destination="-1" eventType="editingChanged" id="W41-Rw-hc5"/>
