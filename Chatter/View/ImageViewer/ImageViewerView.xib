@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageViewerView" customModule="Chatter" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="NbT-w1-EOv" id="cDq-Yw-9ZD"/>
+                <outlet property="scrollView" destination="OFj-CW-b8M" id="ZH3-JV-Hjb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,26 +19,44 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NbT-w1-EOv">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" red="0.23032088710000001" green="0.22518258869999999" blue="0.31493586299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45e-rJ-h4X">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <color key="backgroundColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OFj-CW-b8M">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NbT-w1-EOv">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <color key="backgroundColor" red="0.23032088710000001" green="0.22518258869999999" blue="0.31493586299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="NbT-w1-EOv" firstAttribute="top" secondItem="OFj-CW-b8M" secondAttribute="top" id="2Oz-AS-Sx6"/>
+                        <constraint firstAttribute="trailing" secondItem="NbT-w1-EOv" secondAttribute="trailing" id="5nb-oL-9Wh"/>
+                        <constraint firstAttribute="bottom" secondItem="NbT-w1-EOv" secondAttribute="bottom" id="974-NM-a8h"/>
+                        <constraint firstItem="NbT-w1-EOv" firstAttribute="leading" secondItem="OFj-CW-b8M" secondAttribute="leading" id="QNS-Ne-BwK"/>
+                        <constraint firstItem="NbT-w1-EOv" firstAttribute="centerX" secondItem="OFj-CW-b8M" secondAttribute="centerX" id="Rfs-qH-fTb"/>
+                        <constraint firstItem="NbT-w1-EOv" firstAttribute="bottom" secondItem="OFj-CW-b8M" secondAttribute="bottom" id="pdt-sI-cIg"/>
+                        <constraint firstItem="NbT-w1-EOv" firstAttribute="bottom" secondItem="YGJ-XE-m20" secondAttribute="bottom" id="s4J-bJ-byJ"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="hBT-XE-cRM"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="YGJ-XE-m20"/>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.33004720409999999" green="0.32268408110000002" blue="0.45129949940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="45e-rJ-h4X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2PJ-4Y-zhl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OFj-CW-b8M" secondAttribute="bottom" id="3Hw-HD-yTz"/>
+                <constraint firstItem="OFj-CW-b8M" firstAttribute="top" secondItem="45e-rJ-h4X" secondAttribute="bottom" id="8nD-vn-Iei"/>
                 <constraint firstAttribute="trailing" secondItem="45e-rJ-h4X" secondAttribute="trailing" id="I9X-1Z-eoz"/>
-                <constraint firstItem="NbT-w1-EOv" firstAttribute="top" secondItem="45e-rJ-h4X" secondAttribute="bottom" constant="8" symbolic="YES" id="Lne-dp-xT3"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NbT-w1-EOv" secondAttribute="trailing" id="NQn-CF-gZ4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="NbT-w1-EOv" secondAttribute="bottom" id="Ol8-mN-Kow"/>
-                <constraint firstItem="NbT-w1-EOv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QHi-ej-6DK"/>
+                <constraint firstItem="OFj-CW-b8M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JRa-a0-zws"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OFj-CW-b8M" secondAttribute="trailing" id="RLV-Og-gYn"/>
+                <constraint firstItem="OFj-CW-b8M" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="ZDp-Yz-YfI"/>
+                <constraint firstItem="OFj-CW-b8M" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bJj-cS-bhh"/>
                 <constraint firstItem="45e-rJ-h4X" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jzv-YQ-tXr"/>
-                <constraint firstItem="NbT-w1-EOv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="vwU-48-i78"/>
+                <constraint firstItem="OFj-CW-b8M" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="rRA-KT-IkF"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="105.80357142857143"/>
         </view>

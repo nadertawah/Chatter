@@ -12,12 +12,13 @@ class ImageViewerView: UIViewController
 
     //MARK: - IBOutlet(s)
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        imageView.image = image
-        
+        setUI()
         
     }
     
@@ -46,4 +47,23 @@ class ImageViewerView: UIViewController
     
     //MARK: - Var(s)
     var image : UIImage!
+    
+    //MARK: - Helper Funcs
+    func setUI()
+    {
+        imageView.image = image
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
+    }
+    
+}
+
+
+extension ImageViewerView : UIScrollViewDelegate
+{
+    func viewForZooming(in scrollView: UIScrollView) -> UIView?
+    {
+        imageView
+    }
 }

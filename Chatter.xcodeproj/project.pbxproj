@@ -246,8 +246,8 @@
 		75E90D33287D07AB005A9150 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				75A7B14428804133009FD8C2 /* ImageViewer */,
 				75E90D1B287BBEEB005A9150 /* LaunchScreen.storyboard */,
+				75A7B14428804133009FD8C2 /* ImageViewer */,
 				75AC09A4287D4A3E00662465 /* Base */,
 				75E90D3E287D0AFC005A9150 /* LoginRegister */,
 				75E90D52287D0B92005A9150 /* Profile */,
