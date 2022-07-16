@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="KGk-i7-Jjw" customClass="VoiceNoteMessageCell" customModule="Chatter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="447" height="96"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ijh-mB-Nze" userLabel="Back View">
+                        <rect key="frame" x="5" y="0.0" width="250" height="96"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uiv-PM-rY9">
+                                <rect key="frame" x="53" y="31.5" width="179" height="34"/>
+                                <color key="tintColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="thumbTintColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeF-dn-NM6">
+                                <rect key="frame" x="10" y="10" width="35" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="xxr-4D-l9H"/>
+                                </constraints>
+                                <color key="tintColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="play.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3d-Tr-5GD">
+                                <rect key="frame" x="186" y="71" width="44" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.1333333333" green="0.51764705879999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2014356366" green="0.19291627119999999" blue="0.28022784080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="r3d-Tr-5GD" secondAttribute="bottom" constant="5" id="DS5-1p-LyD"/>
+                            <constraint firstAttribute="bottom" secondItem="CeF-dn-NM6" secondAttribute="bottom" constant="10" id="SSK-6m-mrM"/>
+                            <constraint firstItem="uiv-PM-rY9" firstAttribute="centerY" secondItem="CeF-dn-NM6" secondAttribute="centerY" id="TCW-Mk-B4o"/>
+                            <constraint firstItem="r3d-Tr-5GD" firstAttribute="trailing" secondItem="uiv-PM-rY9" secondAttribute="trailing" id="Vpe-Y9-gaX"/>
+                            <constraint firstAttribute="trailing" secondItem="uiv-PM-rY9" secondAttribute="trailing" constant="20" id="cap-WP-gdq"/>
+                            <constraint firstItem="CeF-dn-NM6" firstAttribute="top" secondItem="Ijh-mB-Nze" secondAttribute="top" constant="10" id="d7Z-D1-zJ9"/>
+                            <constraint firstItem="CeF-dn-NM6" firstAttribute="leading" secondItem="Ijh-mB-Nze" secondAttribute="leading" constant="10" id="i8T-kX-GiQ"/>
+                            <constraint firstItem="uiv-PM-rY9" firstAttribute="leading" secondItem="CeF-dn-NM6" secondAttribute="trailing" constant="10" id="pYp-T3-5DF"/>
+                            <constraint firstItem="uiv-PM-rY9" firstAttribute="width" secondItem="Ijh-mB-Nze" secondAttribute="width" multiplier="0.7" id="x8H-dp-DuR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.23032088710000001" green="0.22518258869999999" blue="0.31493586299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="Ijh-mB-Nze" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="5I4-xw-8Pn"/>
+                    <constraint firstAttribute="trailing" secondItem="Ijh-mB-Nze" secondAttribute="trailing" constant="5" id="WKx-QR-Lnd"/>
+                    <constraint firstItem="Ijh-mB-Nze" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sPl-0O-eWS"/>
+                    <constraint firstAttribute="bottom" secondItem="Ijh-mB-Nze" secondAttribute="bottom" id="uwO-Bd-bcn"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="WKx-QR-Lnd"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="backView" destination="Ijh-mB-Nze" id="fSe-2W-jbT"/>
+                <outlet property="backViewLeadingConstraint" destination="5I4-xw-8Pn" id="o3R-Z7-u13"/>
+                <outlet property="backViewTrailingConstraint" destination="WKx-QR-Lnd" id="caL-B8-lyA"/>
+                <outlet property="durationLabel" destination="r3d-Tr-5GD" id="wUh-I1-YzL"/>
+                <outlet property="playPauseBtn" destination="CeF-dn-NM6" id="Chr-Zg-kMm"/>
+                <outlet property="timeSlider" destination="uiv-PM-rY9" id="IEU-sf-FVY"/>
+            </connections>
+            <point key="canvasLocation" x="228.2608695652174" y="119.86607142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
+    </resources>
+</document>

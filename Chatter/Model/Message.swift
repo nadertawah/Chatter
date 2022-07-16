@@ -14,14 +14,20 @@ struct Message
     var date: Date
     var messageId: String
     var type : MessageType
-
-    init(content: String, senderId: String, type : MessageType)
+    var isOutgoing : Bool
+    {
+        senderId == Helper.getCurrentUserID()
+    }
+    var duration : TimeInterval
+    
+    init(content: String, senderId: String, type : MessageType, duration : TimeInterval)
     {
         self.message = content
         self.senderId = senderId
         self.date = Date()
         self.messageId = UUID().uuidString
         self.type = type
+        self.duration = duration
     }
     
     init(_ dictionary: NSDictionary)
@@ -45,6 +51,10 @@ struct Message
         if let messageType = dictionary[Constants.kMESSAGETYPE] as? String
         {type = MessageType(rawValue: messageType)! }
         else{type = MessageType.text}
+        
+        if let duration = dictionary[Constants.kDURATION] as? TimeInterval
+        { self.duration = duration }
+        else{self.duration = 0}
     }
     
     //MARK: - Helper Funcs
@@ -52,8 +62,8 @@ struct Message
         
         let sentAt = date.chatterStringFromDate()
         
-        return NSDictionary(objects: [message,               senderId,               sentAt,             messageId,               type.rawValue],
-                            forKeys: [Constants.kMESSAGE as NSCopying, Constants.kSENDERID as NSCopying, Constants.kDATE as NSCopying, Constants.kMESSAGEID as NSCopying, Constants.kMESSAGETYPE as NSCopying])
+        return NSDictionary(objects: [message,          senderId,          sentAt,         messageId,         type.rawValue, duration],
+                            forKeys: [Constants.kMESSAGE as NSCopying, Constants.kSENDERID as NSCopying, Constants.kDATE as NSCopying, Constants.kMESSAGEID as NSCopying, Constants.kMESSAGETYPE as NSCopying, Constants.kDURATION as NSCopying])
         
     }
     

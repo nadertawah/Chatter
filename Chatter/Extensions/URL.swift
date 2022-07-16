@@ -9,9 +9,19 @@ import Foundation
 
 extension URL
 {
-    static func chatterImgFileURL(chatRoomID: String, msgDate: Date) -> URL
+    static private func chatFileUrl(_ chatRoomID: String,_ msgDate: Date,ext: String) -> URL
     {
-        let imgfileName = "\(chatRoomID)/\(msgDate.chatterStringFromDate()).png"
-        return FileManager.documentDir().appendingPathComponent(imgfileName)
+        let fileName = "\(chatRoomID)/\(msgDate.chatterStringFromDate()).\(ext)"
+        return FileManager.documentDir().appendingPathComponent(fileName)
+    }
+    
+    static func chatImgFileURL(chatRoomID: String, msgDate: Date) -> URL
+    {
+        return chatFileUrl(chatRoomID, msgDate, ext: "png")
+    }
+    
+    static func chatAudioFileUrl(chatRoomID: String, msgDate: Date) -> URL
+    {
+        return chatFileUrl(chatRoomID, msgDate, ext: "caf")
     }
 }

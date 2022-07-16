@@ -50,9 +50,9 @@ class RecentView: UIViewController, UIScrollViewDelegate
             DispatchQueue.main.async
             {
                 cell.lastMessageLBL.text = item.lastMessage.message
-                if item.lastMessage.type == .image
+                if item.lastMessage.type != .text
                 {
-                    cell.lastMessageLBL.text = "[Image]"
+                    cell.lastMessageLBL.text = "\(item.lastMessage.isOutgoing ? "You: " : "")[\(item.lastMessage.type.rawValue)]"
                 }
                 cell.nameLBL.text = item.friend.fullName
                 let img = UIImage.imageFromString(imgSTR: item.friend.avatar)?.circleMasked

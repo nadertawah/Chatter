@@ -14,4 +14,9 @@ extension FileManager
         try! FileManager().url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     }
     
+    static func tempVoiceNoteDir() -> URL
+    {
+        documentDir().appendingPathComponent("recordTemp.caf")
+    }
+    
 }

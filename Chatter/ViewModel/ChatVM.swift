@@ -34,7 +34,7 @@ class ChatVM
     //MARK: - intent(s)
     func sendMessage(messageContent: String, type : MessageType)
     {
-        let message = Message(content: messageContent, senderId: Helper.getCurrentUserID(), type: type)
+        let message = Message(content: messageContent, senderId: Helper.getCurrentUserID(), type: type, duration: 0)
         sendMessage(message)
     }
     
@@ -94,9 +94,9 @@ class ChatVM
             })
     }
     
-    func imgFileUrl(index:Int) -> URL?
+    func imgFileUrl(message: Message) -> URL?
     {
-        let localFileURL = URL.chatterImgFileURL(chatRoomID: chatRoomID, msgDate: messages.value[index].date)
+        let localFileURL = URL.chatImgFileURL(chatRoomID: chatRoomID, msgDate: message.date)
         if FileManager.default.fileExists(atPath: localFileURL.path)
         {
             return localFileURL
@@ -107,20 +107,17 @@ class ChatVM
         }
     }
     
-    func storeImageLocally(image: UIImage, forURL imgUrl: URL)
+    func storeFileLocally(data: Data, forURL imgUrl: URL)
     {
         if !FileManager.default.fileExists(atPath: imgUrl.path)
         {
             do {
-                if let pngRepresentation = image.jpegData(compressionQuality: 0.1)
+                let folderPathExists = FileManager.default.fileExists(atPath: imgUrl.deletingLastPathComponent().path)
+                if !folderPathExists
                 {
-                    let folderPathExists = FileManager.default.fileExists(atPath: imgUrl.deletingLastPathComponent().path)
-                    if !folderPathExists
-                    {
-                        try FileManager.default.createDirectory(at: imgUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
-                    }
-                    try pngRepresentation.write(to: imgUrl,options: .atomic)
+                    try FileManager.default.createDirectory(at: imgUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
                 }
+                try data.write(to: imgUrl,options: .atomic)
             }
             catch
             {
@@ -129,11 +126,10 @@ class ChatVM
         }
     }
     
-    func downloadImg(index:Int, progress : @escaping (Float)->(),completion : @escaping (UIImage?)->())
+    func downloadImg(message:Message, progress : @escaping (Float)->(),completion : @escaping (UIImage?)->())
     {
-        let message = messages.value[index]
         let url = URL(string: message.message)
-        let localFileURL = URL.chatterImgFileURL(chatRoomID: chatRoomID, msgDate: messages.value[index].date)
+        let localFileURL = URL.chatImgFileURL(chatRoomID: chatRoomID, msgDate: message.date)
         
         ImageDownloader.default.downloadImage(with: url!, options: .none)
         {
@@ -147,9 +143,13 @@ class ChatVM
             switch result
             {
             case .success(let value):
-                self.storeImageLocally(image: value.image, forURL: localFileURL)
-                completion(UIImage(contentsOfFile: localFileURL.path)?.resizeImageTo(size: CGSize(width: 200, height: 200)))
-                self.messages.accept(self.messages.value)
+                if let pngRepresentation = value.image.jpegData(compressionQuality: 0.1)
+                {
+                    self.storeFileLocally(data: pngRepresentation, forURL: localFileURL)
+                    completion(UIImage(contentsOfFile: localFileURL.path)?.resizeImageTo(size: CGSize(width: 200, height: 200)))
+                    self.messages.accept(self.messages.value)
+                }
+                
             case .failure(let error):
                 print(error)
         }
@@ -175,9 +175,9 @@ class ChatVM
     
     func uploadImage(image: UIImage)
     {
-        var imageMessage = Message(content: "0", senderId: Helper.getCurrentUserID(), type: .image)
+        var imageMessage = Message(content: "0", senderId: Helper.getCurrentUserID(), type: .image, duration: 0)
         let date = imageMessage.date.chatterStringFromDate()
-        let imgRef = FireBaseStore.sharedInstance.storageRef.child(Constants.kImageStore).child(Helper.getCurrentUserID()).child(chatRoomID).child("\(date).jpg")
+        let imgRef = FireBaseStore.sharedInstance.storageRef.child(Constants.kIMAGESTORE).child(Helper.getCurrentUserID()).child(chatRoomID).child("\(date).jpg")
         let task = imgRef.putData(image.jpegData(compressionQuality: 0.4)!)
         
         task.observe(.success) { [weak self] StorageTaskSnapshot in
@@ -185,13 +185,18 @@ class ChatVM
                 guard let self = self else {return}
                 if let url = url?.absoluteString
                 {
-                    let localFileURL = URL.chatterImgFileURL(chatRoomID: self.chatRoomID, msgDate: imageMessage.date)
-                    self.storeImageLocally(image: image, forURL: localFileURL)
+                    let localFileURL = URL.chatImgFileURL(chatRoomID: self.chatRoomID, msgDate: imageMessage.date)
                     
-                    imageMessage.message = url
-                    self.sendMessage(imageMessage)
+                    if let pngRepresentation = image.jpegData(compressionQuality: 0.1)
+                    {
+                        self.storeFileLocally(data: pngRepresentation, forURL: localFileURL)
+                        imageMessage.message = url
+                        self.sendMessage(imageMessage)
+                        
+                        task.removeAllObservers()
+                    }
                     
-                    task.removeAllObservers()
+                    
                 }
                 
             }
@@ -203,6 +208,44 @@ class ChatVM
             task.removeAllObservers()
         }
         
+        
+    }
+    
+    func uploadVoiceNote(duration : TimeInterval)
+    {
+        do
+        {
+            var voiceNoteMessage = Message(content: "0", senderId: Helper.getCurrentUserID(), type: .audio, duration: duration)
+            let date = voiceNoteMessage.date.chatterStringFromDate()
+            let voiceNoteRef = FireBaseStore.sharedInstance.storageRef.child(Constants.kVOICENOTESTORE).child(Helper.getCurrentUserID()).child(chatRoomID).child("\(date).caf")
+            let audioData = try Data(contentsOf: FileManager.tempVoiceNoteDir())
+            let task = voiceNoteRef.putData(audioData)
+            
+            task.observe(.success) { [weak self] StorageTaskSnapshot in
+                voiceNoteRef.downloadURL { url, err in
+                    guard let self = self else {return}
+                    if let url = url?.absoluteString
+                    {
+                        let localFileURL = URL.chatAudioFileUrl(chatRoomID: self.chatRoomID, msgDate: voiceNoteMessage.date)
+                        
+                        self.storeFileLocally(data: audioData, forURL: localFileURL)
+                        voiceNoteMessage.message = url
+                        self.sendMessage(voiceNoteMessage)
+                        task.removeAllObservers()
+                    }
+                    
+                }
+            }
+            
+            task.observe(.failure) { StorageTaskSnapshot in
+                print(StorageTaskSnapshot.error!.localizedDescription)
+                task.removeAllObservers()
+            }
+        }
+        catch
+        {
+            print("Error uploading voice note!")
+        }
         
     }
     

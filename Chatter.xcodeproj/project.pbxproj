@@ -18,6 +18,9 @@
 		75A7B14F28805495009FD8C2 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A7B14D28805495009FD8C2 /* UserCell.xib */; };
 		75A7B15128806846009FD8C2 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B15028806846009FD8C2 /* ProfileVM.swift */; };
 		75A88CE4288188A7002F8D72 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */; };
+		75A9576B2882A0A1001E8393 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A9576A2882A0A1001E8393 /* TimeInterval.swift */; };
+		75A95771288312DF001E8393 /* VoiceNoteMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A9576F288312DF001E8393 /* VoiceNoteMessageCell.swift */; };
+		75A95772288312DF001E8393 /* VoiceNoteMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A95770288312DF001E8393 /* VoiceNoteMessageCell.xib */; };
 		75AC099D287D2E7E00662465 /* FireBaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099C287D2E7E00662465 /* FireBaseStore.swift */; };
 		75AC099F287D2F9A00662465 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC099E287D2F9A00662465 /* Message.swift */; };
 		75AC09A1287D378E00662465 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC09A0287D378E00662465 /* UIViewController.swift */; };
@@ -71,6 +74,9 @@
 		75A7B14D28805495009FD8C2 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		75A7B15028806846009FD8C2 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
+		75A9576A2882A0A1001E8393 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		75A9576F288312DF001E8393 /* VoiceNoteMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceNoteMessageCell.swift; sourceTree = "<group>"; };
+		75A95770288312DF001E8393 /* VoiceNoteMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceNoteMessageCell.xib; sourceTree = "<group>"; };
 		75AC099C287D2E7E00662465 /* FireBaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseStore.swift; sourceTree = "<group>"; };
 		75AC099E287D2F9A00662465 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		75AC09A0287D378E00662465 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -137,10 +143,9 @@
 		75A7B13B287FCB2E009FD8C2 /* ChatViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				75A7B13C287FCC05009FD8C2 /* MessageCell.swift */,
-				75A7B13D287FCC05009FD8C2 /* MessageCell.xib */,
-				75A7B140287FE4EA009FD8C2 /* ImgMessageCell.swift */,
-				75A7B141287FE4EA009FD8C2 /* ImgMessageCell.xib */,
+				75A9576E288312B3001E8393 /* Voice Note Message Cell */,
+				75A9576D28831298001E8393 /* Image Message Cell */,
+				75A9576C2883127F001E8393 /* TextMessageCell */,
 			);
 			path = ChatViewCells;
 			sourceTree = "<group>";
@@ -161,6 +166,33 @@
 				75A7B14D28805495009FD8C2 /* UserCell.xib */,
 			);
 			path = UsersViewCells;
+			sourceTree = "<group>";
+		};
+		75A9576C2883127F001E8393 /* TextMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				75A7B13C287FCC05009FD8C2 /* MessageCell.swift */,
+				75A7B13D287FCC05009FD8C2 /* MessageCell.xib */,
+			);
+			path = TextMessageCell;
+			sourceTree = "<group>";
+		};
+		75A9576D28831298001E8393 /* Image Message Cell */ = {
+			isa = PBXGroup;
+			children = (
+				75A7B141287FE4EA009FD8C2 /* ImgMessageCell.xib */,
+				75A7B140287FE4EA009FD8C2 /* ImgMessageCell.swift */,
+			);
+			path = "Image Message Cell";
+			sourceTree = "<group>";
+		};
+		75A9576E288312B3001E8393 /* Voice Note Message Cell */ = {
+			isa = PBXGroup;
+			children = (
+				75A9576F288312DF001E8393 /* VoiceNoteMessageCell.swift */,
+				75A95770288312DF001E8393 /* VoiceNoteMessageCell.xib */,
+			);
+			path = "Voice Note Message Cell";
 			sourceTree = "<group>";
 		};
 		75AC099B287D2E6000662465 /* FireBaseStore */ = {
@@ -348,6 +380,7 @@
 				75AC09A2287D3A9F00662465 /* UIApplication.swift */,
 				7585769C287EEAE00079A969 /* UITableViewCell.swift */,
 				75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */,
+				75A9576A2882A0A1001E8393 /* TimeInterval.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -433,6 +466,7 @@
 				75AC09AA287D575D00662465 /* GoogleService-Info.plist in Resources */,
 				75A7B143287FE4EA009FD8C2 /* ImgMessageCell.xib in Resources */,
 				75E90D1D287BBEEB005A9150 /* LaunchScreen.storyboard in Resources */,
+				75A95772288312DF001E8393 /* VoiceNoteMessageCell.xib in Resources */,
 				75A7B14828804169009FD8C2 /* ImageViewerView.xib in Resources */,
 				75E90D56287D0BB7005A9150 /* ProfileView.xib in Resources */,
 				75E90D51287D0B87005A9150 /* ChatView.xib in Resources */,
@@ -495,11 +529,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AC09A3287D3A9F00662465 /* UIApplication.swift in Sources */,
+				75A9576B2882A0A1001E8393 /* TimeInterval.swift in Sources */,
 				75E90D60287D0D7B005A9150 /* Date.swift in Sources */,
 				75E90D3D287D0ADE005A9150 /* ChatVM.swift in Sources */,
 				75E90D0E287BBEE9005A9150 /* AppDelegate.swift in Sources */,
 				75E90D10287BBEE9005A9150 /* SceneDelegate.swift in Sources */,
 				75E90D37287D0AB0005A9150 /* LoginRegisterVM.swift in Sources */,
+				75A95771288312DF001E8393 /* VoiceNoteMessageCell.swift in Sources */,
 				75AC099F287D2F9A00662465 /* Message.swift in Sources */,
 				75AC09A8287D4A6500662465 /* BaseNavBar.swift in Sources */,
 				75E90D50287D0B87005A9150 /* ChatView.swift in Sources */,

@@ -33,7 +33,7 @@ struct Constants
     static let kMESSAGES = "Messages"
     static let kMESSAGE = "Message"
     static let kDATE = "date"
-
+    static let kDURATION = "duration"
 
     //chats
     static let kCHATROOMID = "chatRoomID"
@@ -41,8 +41,8 @@ struct Constants
     static let kUNREADCOUNTER = "unreadCounter"
     static let kSENDERID = "senderId"
     static let kMESSAGETYPE = "messageType"
-    static let kImageStore = "images"
-
+    static let kIMAGESTORE = "images"
+    static let kVOICENOTESTORE = "VoiceNotes"
 
 
     static let kTYPE = "type"
@@ -69,5 +69,7 @@ struct Constants
     
     static let chatterGreenColor = UIColor(red: 34/255, green: 132/255, blue: 60/255, alpha: 1)
     static let chatterGreyColor = UIColor(red: 44/255, green: 41/255, blue: 62/255, alpha: 1)
+    
+    static let screenWidth = UIScreen.main.bounds.width
 }
 
