@@ -54,7 +54,7 @@ class ImageViewerView: UIViewController
         imageView.image = image
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 6.0
+        scrollView.maximumZoomScale = 3.0
     }
     
 }
