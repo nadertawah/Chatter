@@ -115,26 +115,36 @@ class ChatView: UIViewController
         updateBottomViewUi()
     }
    
+    @IBAction func recordDragedToLock(_ sender: UIButton)
+    {
+        recorderIsLocked = true
+    }
+    
     @IBAction func stopVoiceRecord(_ sender: UIButton)
     {
         stopRecord()
+        recorderIsLocked = false
     }
     
     
     @IBAction func startVoiceRecord(_ sender: UIButton)
     {
-        record()
+        if !recorderIsLocked
+        {
+            record()
+        }
     }
     
     //MARK: - Var(s)
     var VM : ChatVM!
     let bag = DisposeBag()
     let imgController = UIImagePickerController()
-    var audioRecorder: AVAudioRecorder!
+    var audioRecorder: AVAudioRecorder?
     var audioPlayer = AVAudioPlayer()
     var isAudioRecordingGranted : Bool = false
     var timer : Timer!
     var currentPlayingCellIndex : Int!
+    var recorderIsLocked = false
     
     //MARK: - Helper Funcs
     func setUI()
@@ -476,7 +486,7 @@ extension ChatView
                 ] as [String : Any]
 
                 audioRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
-                audioRecorder.record()
+                audioRecorder?.record()
                 
                 showRecorderView()
             }
@@ -495,22 +505,30 @@ extension ChatView
     
     func stopRecord()
     {
-        if audioRecorder != nil && audioRecorder.isRecording
+        if audioRecorder?.isRecording == true
         {
-            let duration = audioRecorder.currentTime
-            audioRecorder.stop()
-            audioRecorder = nil
-            hideRecorderView()
+            if let duration = audioRecorder?.currentTime
+            {
+                audioRecorder?.stop()
+                audioRecorder = nil
+                hideRecorderView()
+                
+                VM.uploadVoiceNote(duration:duration )
+            }
             
-            VM.uploadVoiceNote(duration:duration )
         }
     }
     
     func showRecorderView()
     {
+        
         //show recording view
         self.textMsgViewTrailingConstraint.constant = textMsgViewWidth.constant  + Constants.screenWidth
         updateLayoutWithAnimation()
+        
+        //show stop button
+        micBtn.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+        micBtn.tintColor = .red
         
         //set flashing mic animation
         UIView.animate(withDuration: 1, delay: 0, options: [.repeat,.autoreverse])
@@ -526,10 +544,10 @@ extension ChatView
     
     @objc func updateRecordingTimer()
     {
-        if audioRecorder != nil && audioRecorder.isRecording
+        if audioRecorder?.isRecording == true
         {
-            let min = Int(self.audioRecorder.currentTime / 60)
-            let sec = Int(self.audioRecorder.currentTime.truncatingRemainder(dividingBy: 60))
+            let min = Int((self.audioRecorder?.currentTime ?? 0) / 60)
+            let sec = Int(self.audioRecorder?.currentTime.truncatingRemainder(dividingBy: 60) ?? 0)
             let totalTimeString = String(format: "%02d:%02d", min, sec)
             self.voiceNoteTimerLabel.text = totalTimeString
         }
@@ -544,6 +562,10 @@ extension ChatView
         //remove animation and reset flashing mic state
         self.flashingMicImgView.layer.removeAllAnimations()
         self.flashingMicImgView.alpha = 1
+        
+        //hide stop button
+        micBtn.setImage(UIImage(systemName: "mic.fill"), for: .normal)
+        micBtn.tintColor = Constants.chatterGreenColor
         
         //stop timer
         timer.invalidate()

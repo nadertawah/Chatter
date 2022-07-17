@@ -96,8 +96,8 @@
                                 <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                             </buttonConfiguration>
                             <connections>
+                                <action selector="recordDragedToLock:" destination="-1" eventType="touchDragOutside" id="t63-Ku-xG0"/>
                                 <action selector="startVoiceRecord:" destination="-1" eventType="touchDown" id="Inx-7y-g2q"/>
-                                <action selector="stopVoiceRecord:" destination="-1" eventType="touchDragExit" id="0h0-qZ-xf1"/>
                                 <action selector="stopVoiceRecord:" destination="-1" eventType="touchUpInside" id="p4g-sk-YLk"/>
                             </connections>
                         </button>
