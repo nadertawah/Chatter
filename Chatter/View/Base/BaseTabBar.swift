@@ -44,29 +44,14 @@ class BaseTabBar:  UITabBarController
         items[1].image = UIImage(systemName: "person.3.sequence.fill")
         items[2].image = UIImage(systemName: "person.fill")
 
-       
-        //TODO: - set default selected index
-        
         //set tabBar attributes
-        self.tabBar.tintColor = Constants.chatterGreenColor
-        self.tabBar.backgroundColor = Constants.chatterGreyColor
+        self.tabBar.tintColor = UIColor.chatterGreenColor
+        self.tabBar.backgroundColor = UIColor.chatterGreyColor
         self.tabBar.unselectedItemTintColor = .white
-        //set delegate
-       // self.delegate = self
         
         //override dark mode
         self.overrideUserInterfaceStyle = .light
+        
     }
     
 }
-
-
-//extension BaseTabBar : UITabBarControllerDelegate
-//{
-//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
-//    {
-//        if viewController is
-//        {
-//        }
-//    }
-//}

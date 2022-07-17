@@ -22,6 +22,10 @@ class LoginRegisterVM
                 DispatchQueue.main.async
                 {
                     completion(result, error)
+                    if result != nil
+                    {
+                        FireBaseDB.sharedInstance.setOnlineStatus(isOnline: true)
+                    }
                 }
             }
         }

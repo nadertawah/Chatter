@@ -20,12 +20,6 @@ class RecentView: UIViewController, UIScrollViewDelegate
         setUI()
     }
 
-    
-    
-    //MARK: - IBAction(s)
-    
-    
-    
     //MARK: - Var(s)
     let VM = RecentVM()
     let bag = DisposeBag()
@@ -63,7 +57,7 @@ class RecentView: UIViewController, UIScrollViewDelegate
                 if item.unreadCount != nil , item.unreadCount! > 0
                 {
                     cell.accessoryView = self.setBadge(count: item.unreadCount!)
-                    cell.contentView.superview?.backgroundColor = Constants.chatterGreyColor
+                    cell.contentView.superview?.backgroundColor = UIColor.chatterGreyColor
                 }
                 else
                 {
@@ -98,7 +92,7 @@ class RecentView: UIViewController, UIScrollViewDelegate
         badge.layer.cornerRadius = width / 2
         badge.layer.masksToBounds = true
         badge.textAlignment = .center
-        badge.textColor = Constants.chatterGreyColor
+        badge.textColor = UIColor.chatterGreyColor
         badge.backgroundColor = .green
         return badge
     }

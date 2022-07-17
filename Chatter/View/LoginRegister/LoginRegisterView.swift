@@ -95,7 +95,6 @@ class LoginRegisterView: UIViewController
     }
     
     
-    
     //MARK: - Var(s)
     var VM = LoginRegisterVM()
     var selectedImg : UIImage?

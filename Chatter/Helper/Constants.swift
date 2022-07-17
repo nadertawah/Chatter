@@ -24,7 +24,8 @@ struct Constants
     static let kCURRENTUSER = "currentUser"
     static let kCITY = "city"
     static let kCOUNTRY = "country"
-
+    static let kONLINE = "isOnline"
+    
     static let kPRIVATE = "private"
     static let kGROUP = "group"
 
@@ -67,9 +68,7 @@ struct Constants
     static let fireBaseDBUrl = "https://chatter-4b1b3-default-rtdb.europe-west1.firebasedatabase.app/"
     static let fireBaseStoreUrl = "gs://chatter-4b1b3.appspot.com"
     
-    static let chatterGreenColor = UIColor(red: 34/255, green: 132/255, blue: 60/255, alpha: 1)
-    static let chatterGreyColor = UIColor(red: 44/255, green: 41/255, blue: 62/255, alpha: 1)
-    
     static let screenWidth = UIScreen.main.bounds.width
+    static let screenHeight = UIScreen.main.bounds.height
 }
 

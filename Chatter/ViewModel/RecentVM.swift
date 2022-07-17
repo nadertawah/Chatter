@@ -21,13 +21,9 @@ class RecentVM
     //MARK: - Var(s)
     private(set) var recentChats = BehaviorRelay<[(friend : User, lastMessage : Message, unreadCount: Int?)]>(value: [])
     
-    
-    //MARK: - intent(s)
-    
     //MARK: - Helper Funcs
     private func getFromDB()
     {
-        
         // get all chatrooms and last messages and updated friend info
         FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).queryOrdered(byChild: "\(Constants.kLASTMESSAGE)/\(Constants.kDATE)")
             .observe(.childAdded, with: {[weak self] chatroomSnapshot in
@@ -52,11 +48,8 @@ class RecentVM
                     //obsereve avatar changes
                     self?.observeAvatar(friendID)
                 }
-                
             }
             )
-        
-        
     }
     
     private func observeFriendValue(_ friendID: String, _ dictionaryChatroom: NSDictionary, _ lastMessage: Message)
@@ -120,8 +113,6 @@ class RecentVM
                         }
                     }
                 }
-                
-                
             }
     }
     
@@ -146,7 +137,6 @@ class RecentVM
                     }
                 }
             }
-            
         }
     }
     

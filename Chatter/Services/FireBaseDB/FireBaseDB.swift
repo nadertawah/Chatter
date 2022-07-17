@@ -33,8 +33,25 @@ extension FireBaseDB
             {
                 changeHandler(avatar)
             }
-            
         }
+    }
+    
+    func observeOnlineStatus(friendID : String,changeHandler : @escaping (Bool)->())
+    {
+        FireBaseDB.sharedInstance.DBref.child(Constants.kALLUSERS).child(friendID).child(Constants.kONLINE)
+            .observe(.value)
+        { onlineSnapshot in
+            if let isOnline = onlineSnapshot.value as? Int
+            {
+                changeHandler(isOnline == 1)
+            }
+        }
+    }
+    
+    func setOnlineStatus(isOnline: Bool)
+    {
+        FireBaseDB.sharedInstance.DBref.child(Constants.kALLUSERS).child(Helper.getCurrentUserID()).child(Constants.kONLINE)
+            .setValue(isOnline ? 1 : 0)
     }
     
     func resetUnreadCounter(chatRoomID:String)

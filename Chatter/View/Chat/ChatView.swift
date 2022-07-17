@@ -62,6 +62,7 @@ class ChatView: UIViewController
         
         //set navBar
         setNavBar()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -85,7 +86,6 @@ class ChatView: UIViewController
     {
         fatalError("init(coder:) has not been implemented")
     }
-
     
     //MARK: - IBAction(s)
     @objc private func avatarPressed()
@@ -125,8 +125,7 @@ class ChatView: UIViewController
         stopRecord()
         recorderIsLocked = false
     }
-    
-    
+        
     @IBAction func startVoiceRecord(_ sender: UIButton)
     {
         if !recorderIsLocked
@@ -145,6 +144,7 @@ class ChatView: UIViewController
     var timer : Timer!
     var currentPlayingCellIndex : Int!
     var recorderIsLocked = false
+    var recordPulseAnimationLayer : CAShapeLayer!
     
     //MARK: - Helper Funcs
     func setUI()
@@ -214,8 +214,6 @@ class ChatView: UIViewController
         }
     }
     
-    
-    
     func setNavBar()
     {
         //hide tabbar
@@ -224,21 +222,24 @@ class ChatView: UIViewController
         //hide navbar
         self.navigationController?.navigationBar.isHidden = true
 
-        let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left")?.withTintColor(Constants.chatterGreyColor, renderingMode: .alwaysOriginal), style: .done, target: self, action: #selector(back))
-        
+        //set nav btns
         let height = navBar.frame.height
+
+        //back button
+        let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left")?.withTintColor(UIColor.chatterGreyColor, renderingMode: .alwaysOriginal), style: .done, target: self, action: #selector(back))
+        
+        //avatar image
         let avatarView = UIButton(frame: CGRect(x: 0, y: 0, width: height, height: height))
         avatarView.layer.cornerRadius = height / 2
         avatarView.addTarget(self, action: #selector(avatarPressed), for: .touchUpInside)
-        
         let avatar = UIBarButtonItem(customView: avatarView)
-        avatar.accessibilityIdentifier = "avatarBarBtn"
         
-        let friendName = UIBarButtonItem(title: VM.otherUser.value.fullName, style: .done, target: nil, action: nil)
-        friendName.tintColor = Constants.chatterGreyColor
+        //name and online status
+        let onlineView = OnlineStatusView(frame: CGRect(x: 0, y: 0, width: 200, height: height))
+        onlineView.setName(VM.otherUser.value.fullName)
+        let friendNameBtn = UIBarButtonItem(customView: onlineView)
         
-        navBar.topItem?.setLeftBarButtonItems([backBtn, avatar,friendName], animated: true)
-        
+        navBar.topItem?.setLeftBarButtonItems([backBtn, avatar,friendNameBtn], animated: true)
         
         //bind friend avatar
         VM.otherUser.subscribe
@@ -246,6 +247,15 @@ class ChatView: UIViewController
             guard let friend = $0.element else {return}
             let img = UIImage.imageFromString(imgSTR: friend.avatar)?.resizeImageTo(size: CGSize(width: height, height: height))?.circleMasked
             avatar.changeCustomBarBtnImage(img:  img)
+        }.disposed(by: bag)
+        
+        //bind online status
+        VM.isOnline.subscribe
+        { isOnline in
+            UIView.animate(withDuration: 0.5)
+            {
+                onlineView.onlineLabel.alpha = isOnline ? 1 : 0
+            }
         }.disposed(by: bag)
     }
     
@@ -291,7 +301,7 @@ class ChatView: UIViewController
         
         if message.isOutgoing
         {
-            cell.backView.backgroundColor = Constants.chatterGreyColor
+            cell.backView.backgroundColor = UIColor.chatterGreyColor
             cell.msgLabel.textColor = .white
             cell.timeStampLabel.textColor = .white
             cell.trailingBackView.isActive = true
@@ -300,8 +310,8 @@ class ChatView: UIViewController
         else
         {
             cell.backView.backgroundColor = .white
-            cell.msgLabel.textColor = Constants.chatterGreyColor
-            cell.timeStampLabel.textColor = Constants.chatterGreyColor
+            cell.msgLabel.textColor = UIColor.chatterGreyColor
+            cell.timeStampLabel.textColor = UIColor.chatterGreyColor
             cell.trailingBackView.isActive = false
             cell.leadingBackView.isActive = true
         }
@@ -337,7 +347,7 @@ class ChatView: UIViewController
         
         if message.isOutgoing
         {
-            cell.backView.backgroundColor = Constants.chatterGreyColor
+            cell.backView.backgroundColor = UIColor.chatterGreyColor
             cell.trailingBackView.isActive = true
             cell.leadingBackView.isActive = false
             cell.timeStampLabel.textColor = .white
@@ -348,7 +358,7 @@ class ChatView: UIViewController
             cell.backView.backgroundColor = .white
             cell.trailingBackView.isActive = false
             cell.leadingBackView.isActive = true
-            cell.timeStampLabel.textColor = Constants.chatterGreyColor
+            cell.timeStampLabel.textColor = UIColor.chatterGreyColor
         }
         return cell
     }
@@ -364,7 +374,7 @@ class ChatView: UIViewController
         
         if VM.messages.value[row].isOutgoing
         {
-            cell.backView.backgroundColor = Constants.chatterGreyColor
+            cell.backView.backgroundColor = UIColor.chatterGreyColor
             cell.backViewTrailingConstraint.isActive = true
             cell.backViewLeadingConstraint.isActive = false
         }
@@ -423,6 +433,7 @@ class ChatView: UIViewController
         }
     }
 }
+
 
 //MARK: - image picker delegate funcs
 extension ChatView : UIImagePickerControllerDelegate ,UINavigationControllerDelegate
@@ -494,13 +505,11 @@ extension ChatView
             {
                 AVAudioSession.sharedInstance().requestRecordPermission({[weak self] in self?.isAudioRecordingGranted = $0})
             }
-            
         }
         catch
         {
             print("Failed to record!")
         }
-        
     }
     
     func stopRecord()
@@ -515,7 +524,6 @@ extension ChatView
                 
                 VM.uploadVoiceNote(duration:duration )
             }
-            
         }
     }
     
@@ -540,6 +548,9 @@ extension ChatView
         
         //start timer
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateRecordingTimer), userInfo: nil, repeats: true)
+        
+        //show pulse animation
+        createRecorderPulseAnimation()
     }
     
     @objc func updateRecordingTimer()
@@ -565,11 +576,15 @@ extension ChatView
         
         //hide stop button
         micBtn.setImage(UIImage(systemName: "mic.fill"), for: .normal)
-        micBtn.tintColor = Constants.chatterGreenColor
+        micBtn.tintColor = UIColor.chatterGreenColor
         
         //stop timer
         timer.invalidate()
         voiceNoteTimerLabel.text = "00:00"
+        
+        //remove pulse animation
+        recordPulseAnimationLayer.removeAllAnimations()
+        recordPulseAnimationLayer.removeFromSuperlayer()
     }
     
     @objc func voiceNotePlayPauseBtnPressed(_ sender: UIButton)
@@ -643,5 +658,37 @@ extension ChatView
             cell.playPauseBtn.setImage(UIImage(systemName: "play.fill"), for: .normal)
             voiceNotePlayPauseBtnPressed(sender)
         }
+    }
+    
+    func createRecorderPulseAnimation()
+    {
+        let position = CGPoint(x: micBtn.bounds.width + 5, y: micBtn.bounds.height + 5)
+
+        let circularPath = UIBezierPath(arcCenter: position, radius: UIScreen.main.bounds.size.width / 3, startAngle: 0, endAngle: 2 * .pi , clockwise: true)
+        
+        recordPulseAnimationLayer = CAShapeLayer()
+        recordPulseAnimationLayer.path = circularPath.cgPath
+        recordPulseAnimationLayer.lineWidth = 10
+        recordPulseAnimationLayer.fillColor = UIColor.chatterGreenColor.cgColor
+        recordPulseAnimationLayer.lineCap = .round
+        recordPulseAnimationLayer.strokeColor = UIColor.clear.cgColor
+        
+        micBtn.layer.insertSublayer(recordPulseAnimationLayer, at:0)
+        
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimation.duration = 0.5
+        scaleAnimation.fromValue = 1.2
+        scaleAnimation.toValue = 1.1
+        scaleAnimation.repeatCount = .greatestFiniteMagnitude
+        recordPulseAnimationLayer.add(scaleAnimation, forKey: "scale")
+
+        let opacityAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        opacityAnimation.duration = 2.0
+        opacityAnimation.fromValue = 0.9
+        opacityAnimation.toValue = 0.3
+        opacityAnimation.autoreverses = true
+        opacityAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        opacityAnimation.repeatCount = .greatestFiniteMagnitude
+        recordPulseAnimationLayer.add(opacityAnimation, forKey: "opacity")
     }
 }

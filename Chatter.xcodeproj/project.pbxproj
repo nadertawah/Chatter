@@ -30,6 +30,8 @@
 		75AC09AA287D575D00662465 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75AC09A9287D575C00662465 /* GoogleService-Info.plist */; };
 		75AC09AE287D5ECD00662465 /* RecentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC09AC287D5ECD00662465 /* RecentViewCell.swift */; };
 		75AC09AF287D5ECD00662465 /* RecentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75AC09AD287D5ECD00662465 /* RecentViewCell.xib */; };
+		75B6C28C2884367D0000AAAC /* OnlineStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B6C28B2884367D0000AAAC /* OnlineStatusView.swift */; };
+		75B6C28E288474460000AAAC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B6C28D288474450000AAAC /* UIColor.swift */; };
 		75E90D0E287BBEE9005A9150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D0D287BBEE9005A9150 /* AppDelegate.swift */; };
 		75E90D10287BBEE9005A9150 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E90D0F287BBEE9005A9150 /* SceneDelegate.swift */; };
 		75E90D1A287BBEEB005A9150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E90D19287BBEEB005A9150 /* Assets.xcassets */; };
@@ -86,6 +88,8 @@
 		75AC09A9287D575C00662465 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75AC09AC287D5ECD00662465 /* RecentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewCell.swift; sourceTree = "<group>"; };
 		75AC09AD287D5ECD00662465 /* RecentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentViewCell.xib; sourceTree = "<group>"; };
+		75B6C28B2884367D0000AAAC /* OnlineStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStatusView.swift; sourceTree = "<group>"; };
+		75B6C28D288474450000AAAC /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		75E90D0A287BBEE9005A9150 /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E90D0D287BBEE9005A9150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75E90D0F287BBEE9005A9150 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +225,14 @@
 			path = RecentViewCell;
 			sourceTree = "<group>";
 		};
+		75B6C28A288436410000AAAC /* Online status View */ = {
+			isa = PBXGroup;
+			children = (
+				75B6C28B2884367D0000AAAC /* OnlineStatusView.swift */,
+			);
+			path = "Online status View";
+			sourceTree = "<group>";
+		};
 		75E90D01287BBEE9005A9150 = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +355,7 @@
 		75E90D4D287D0B73005A9150 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				75B6C28A288436410000AAAC /* Online status View */,
 				75E90D4E287D0B87005A9150 /* ChatView.swift */,
 				75E90D4F287D0B87005A9150 /* ChatView.xib */,
 				75A7B13B287FCB2E009FD8C2 /* ChatViewCells */,
@@ -381,6 +394,7 @@
 				7585769C287EEAE00079A969 /* UITableViewCell.swift */,
 				75A88CE3288188A7002F8D72 /* UIBarButtonItem.swift */,
 				75A9576A2882A0A1001E8393 /* TimeInterval.swift */,
+				75B6C28D288474450000AAAC /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -533,6 +547,7 @@
 				75E90D60287D0D7B005A9150 /* Date.swift in Sources */,
 				75E90D3D287D0ADE005A9150 /* ChatVM.swift in Sources */,
 				75E90D0E287BBEE9005A9150 /* AppDelegate.swift in Sources */,
+				75B6C28C2884367D0000AAAC /* OnlineStatusView.swift in Sources */,
 				75E90D10287BBEE9005A9150 /* SceneDelegate.swift in Sources */,
 				75E90D37287D0AB0005A9150 /* LoginRegisterVM.swift in Sources */,
 				75A95771288312DF001E8393 /* VoiceNoteMessageCell.swift in Sources */,
@@ -549,6 +564,7 @@
 				75A7B14728804169009FD8C2 /* ImageViewerView.swift in Sources */,
 				75E90D58287D0C1C005A9150 /* User.swift in Sources */,
 				75A7B13E287FCC05009FD8C2 /* MessageCell.swift in Sources */,
+				75B6C28E288474460000AAAC /* UIColor.swift in Sources */,
 				75E90D3B287D0AD0005A9150 /* UsersVM.swift in Sources */,
 				75E90D31287D0645005A9150 /* DataPersistantProtocol.swift in Sources */,
 				75A7B15128806846009FD8C2 /* ProfileVM.swift in Sources */,

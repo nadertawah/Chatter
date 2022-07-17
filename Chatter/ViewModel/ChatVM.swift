@@ -13,7 +13,6 @@ class ChatVM
 {
     init(_ chatWith : User)
     {
-        
         self.otherUser.accept(chatWith)
         
         self.chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: chatWith.userID)
@@ -22,12 +21,14 @@ class ChatVM
         {
             self.getMessagesFromDB()
             self.observeAvatar()
+            self.observeOnlineStatus()
         }
     }
     
     //MARK: - Var(s)
     private(set) var messages = BehaviorRelay<[Message]>(value: [])
     private(set) var otherUser = BehaviorRelay<User>(value: User(userID: "", createdAt: Date(), updatedAt: Date(), email: "", fullName: "", avatar: ""))
+    private(set) var isOnline = BehaviorRelay<Bool>(value: false)
     private(set) var chatRoomID : String
     private var unreadCount : Int = 0
     
@@ -43,13 +44,9 @@ class ChatVM
         let chatRoomRefForFriend = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(otherUser.value.userID).child(chatRoomID)
         let chatRoomRefForCurrentUSer = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(chatRoomID)
         
-        
-        
         //set last message for both users
         chatRoomRefForFriend.child(Constants.kLASTMESSAGE).setValue(message.messageDictionary())
         chatRoomRefForCurrentUSer.child(Constants.kLASTMESSAGE).setValue(message.messageDictionary())
-        
-       
         
         //save the message for current user
         chatRoomRefForCurrentUSer.child(Constants.kMESSAGES).child(message.messageId)
@@ -66,9 +63,7 @@ class ChatVM
                 let count = unreadCountSnapshot.value as? Int
                 chatRoomRefForFriend.child(Constants.kUNREADCOUNTER).setValue(count == nil ? 1 : count! + 1)
             }
-        
     }
-    
     
     //MARK: - Helper Funcs
     
@@ -233,7 +228,6 @@ class ChatVM
                         self.sendMessage(voiceNoteMessage)
                         task.removeAllObservers()
                     }
-                    
                 }
             }
             
@@ -259,6 +253,16 @@ class ChatVM
             var friend = self.otherUser.value
             friend.avatar = avatar
             self.otherUser.accept(friend)
+        }
+    }
+    
+    func observeOnlineStatus()
+    {
+        FireBaseDB.sharedInstance.observeOnlineStatus(friendID: otherUser.value.userID)
+        {
+            [weak self] in
+            guard let self = self else{return}
+            self.isOnline.accept($0)
         }
     }
 }

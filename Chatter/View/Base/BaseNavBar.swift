@@ -17,10 +17,10 @@ class BaseNavBar : UINavigationController
         //NavBar Attributes
         //navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)]
         navigationBar.prefersLargeTitles = true
-        navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : Constants.chatterGreyColor]
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : Constants.chatterGreyColor]
-        navigationBar.tintColor = Constants.chatterGreyColor
-        navigationBar.backgroundColor = Constants.chatterGreenColor
+        navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.chatterGreyColor]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.chatterGreyColor]
+        navigationBar.tintColor = UIColor.chatterGreyColor
+        navigationBar.backgroundColor = UIColor.chatterGreenColor
     }
     
     
