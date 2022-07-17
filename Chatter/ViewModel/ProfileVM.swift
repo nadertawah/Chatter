@@ -30,6 +30,7 @@ class ProfileVM
         DispatchQueue.global(qos: .userInteractive).async
         {
             do {
+                FireBaseDB.sharedInstance.setOnlineStatus(isOnline: false)
                 try Auth.auth().signOut()
                 DispatchQueue.main.async
                 {
