@@ -59,4 +59,10 @@ extension FireBaseDB
         FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(chatRoomID).child(Constants.kUNREADCOUNTER)
             .setValue(0)
     }
+    
+    func setPublicKey(key : String)
+    {
+        FireBaseDB.sharedInstance.DBref.child(Constants.kALLUSERS).child(Helper.getCurrentUserID()).child(Constants.kPUBLICKEY)
+            .setValue(key)
+    }
 }

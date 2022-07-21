@@ -31,7 +31,8 @@ class UsersVM
                 {
                     guard let self = self else {return}
                     
-                    let user = User(dictionaryUser)
+                    let user = User([snapshot.key:dictionaryUser])
+                    
                     if user.userID != Helper.getCurrentUserID()
                     {
                         var usersArr = self.users.value

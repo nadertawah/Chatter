@@ -149,6 +149,9 @@ class ChatView: UIViewController
     //MARK: - Helper Funcs
     func setUI()
     {
+        //set image controller presentation style
+        imgController.modalPresentationStyle = .overFullScreen
+        
         //hide keyboard
         self.hideKeyboardWhenTappedAround()
                
@@ -156,6 +159,7 @@ class ChatView: UIViewController
         tableView.register(UINib(nibName: MessageCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: MessageCell.reuseIdentfier)
         tableView.register(UINib(nibName: ImgMessageCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: ImgMessageCell.reuseIdentfier)
         tableView.register(UINib(nibName: VoiceNoteMessageCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: VoiceNoteMessageCell.reuseIdentfier)
+        tableView.register(UINib(nibName: SystemMessageCell.reuseIdentfier, bundle: nil), forCellReuseIdentifier: SystemMessageCell.reuseIdentfier)
 
         //set image controller delegate
         imgController.delegate = self
@@ -179,10 +183,7 @@ class ChatView: UIViewController
                     self.navigationController?.pushViewController(imgViewerVC, animated: true)
                 }
             }
-            
-            
         }).disposed(by: bag)
-        
     }
     
     @objc private func back()
@@ -202,7 +203,6 @@ class ChatView: UIViewController
                 self.scrollToBottom()
             }
         }
-        
     }
     
     @objc func keyboardWillDisappear(notification: NSNotification?)
@@ -277,6 +277,9 @@ class ChatView: UIViewController
                 
             case .audio:
                 return self.configureVoiceNoteMessageCell(row)
+            
+            case .system:
+                return self.configureSystemMessageCell(message)
                 
             default:
                 return UITableViewCell()
@@ -290,7 +293,16 @@ class ChatView: UIViewController
             self.scrollToBottom()
         }.disposed(by: bag)
     }
-    
+    func configureSystemMessageCell(_ message : Message) -> SystemMessageCell
+    {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: SystemMessageCell.reuseIdentfier) as? SystemMessageCell
+        else {return SystemMessageCell()}
+        
+        let str = NSAttributedString(string: message.message, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)])
+        
+        cell.msgBtn.setAttributedTitle(str, for: .normal)
+        return cell
+    }
     func configureTextMessageCell(_ message : Message) -> MessageCell
     {
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: MessageCell.reuseIdentfier) as? MessageCell
@@ -370,7 +382,7 @@ class ChatView: UIViewController
         
         cell.playPauseBtn.tag = row
         cell.playPauseBtn.addTarget(self, action: #selector(voiceNotePlayPauseBtnPressed(_:)), for: .touchUpInside)
-        cell.durationLabel.text = self.VM.messages.value[row].duration.timeString
+        cell.durationLabel.text = self.VM.messages.value[row].duration?.timeString
         
         if VM.messages.value[row].isOutgoing
         {

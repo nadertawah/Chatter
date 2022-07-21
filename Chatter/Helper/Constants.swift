@@ -10,65 +10,55 @@ import UIKit
 
 struct Constants
 {
-    //User
-    static let kUSERID = "userId"
-    static let kCREATEDAT = "createdAt"
-    static let kUPDATEDAT = "updatedAt"
-    static let kEMAIL = "email"
-    static let kPHONE = "phone"
-    static let kPUSHID = "pushId"
-    static let kFIRSTNAME = "firstname"
-    static let kLASTNAME = "lastname"
-    static let kFULLNAME = "fullname"
-    static let kAVATAR = "avatar"
-    static let kCURRENTUSER = "currentUser"
-    static let kCITY = "city"
-    static let kCOUNTRY = "country"
-    static let kONLINE = "isOnline"
-    
-    static let kPRIVATE = "private"
-    static let kGROUP = "group"
-
-    //
+    //Users
     static let kALLUSERS = "Users"
+    static let kPUBLICKEY = "PublicKey"
+    static let kAVATAR = "avatar"
+    static let kCREATEDAT = "createdAt"
+    static let kEMAIL = "email"
+    static let kFULLNAME = "fullname"
+    static let kONLINE = "isOnline"
+    static let kUPDATEDAT = "updatedAt"
+    static let kUSERID = "userId"
+    //-------------------//
+
+    
+    //Messages
     static let kMESSAGES = "Messages"
+    static let kCHATROOMID = "chatRoomID"
     static let kMESSAGE = "Message"
     static let kDATE = "date"
     static let kDURATION = "duration"
-
-    //chats
-    static let kCHATROOMID = "chatRoomID"
+    static let kMESSAGEID = "messageId"
+    static let kMESSAGETYPE = "messageType"
+    static let kSENDERID = "senderId"
+    static let kISOUTGOING = "isOutgoing"
+    
     static let kLASTMESSAGE = "lastMessage"
     static let kUNREADCOUNTER = "unreadCounter"
-    static let kSENDERID = "senderId"
-    static let kMESSAGETYPE = "messageType"
+    static let kCHATISREQUESTED = "isRequested"
+
+    //-------------------//
+
+    
+    //FireStore
     static let kIMAGESTORE = "images"
     static let kVOICENOTESTORE = "VoiceNotes"
-
-
-    static let kTYPE = "type"
-
-    static let kGROUPID = "groupId"
-    static let kRECENTID = "recentId"
-    static let kMEMBERS = "members"
-    static let kMEMBERSTOPUSH = "membersToPush"
-    static let kDISCRIPTION = "discription"
-    static let kWITHUSERUSERNAME = "withUserUserName"
-    static let kWITHUSERUSERID = "withUserUserID"
-    static let kOWNERID = "ownerID"
-    static let kSTATUS = "status"
-    static let kMESSAGEID = "messageId"
-    static let kNAME = "name"
-    static let kWITHUSERFULLNAME = "withUserFullName"
-    static let kSENDERNAME = "senderName"
-
-    static let kUSER = "user"
-
-
+    //-------------------//
+    
+    //URLs
     static let fireBaseDBUrl = "https://chatter-4b1b3-default-rtdb.europe-west1.firebasedatabase.app/"
     static let fireBaseStoreUrl = "gs://chatter-4b1b3.appspot.com"
-    
+    //-------------------//
+
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
+    
+    static let keyChainService = "PrivateKey"
+    
+    static let kCOUNT = "count"
+    
+    static let kCHATREQUESTS = "ChatRequests"
+
 }
 

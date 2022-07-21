@@ -13,29 +13,40 @@ class ChatVM
 {
     init(_ chatWith : User)
     {
-        self.otherUser.accept(chatWith)
+        //set initial message
+        let systemMessage = Message(content: "Messages are end-to-end encrypted.", type: .system, isOutgoing: true, duration: nil)
+        messages = BehaviorRelay<[Message]>(value: [systemMessage])
         
-        self.chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: chatWith.userID)
+        
+        chatRoomID = Helper.getChatRoomID(ID1: Helper.getCurrentUserID(), ID2: chatWith.userID)
+
+        getEncryptionKeys()
+
+        otherUser.accept(chatWith)
         
         DispatchQueue.global(qos: .userInteractive).async
-        {
-            self.getMessagesFromDB()
-            self.observeAvatar()
-            self.observeOnlineStatus()
+        { [weak self] in
+            self?.getMessagesFromDB()
+            self?.observeAvatar()
+            self?.observeOnlineStatus()
         }
+        
+
     }
     
     //MARK: - Var(s)
-    private(set) var messages = BehaviorRelay<[Message]>(value: [])
-    private(set) var otherUser = BehaviorRelay<User>(value: User(userID: "", createdAt: Date(), updatedAt: Date(), email: "", fullName: "", avatar: ""))
+    private(set) var messages: BehaviorRelay<[Message]>
+    private(set) var otherUser = BehaviorRelay<User>(value: User(userID: "", createdAt: Date(), updatedAt: Date(), email: "", fullName: "", avatar: "", publicKey: ""))
     private(set) var isOnline = BehaviorRelay<Bool>(value: false)
     private(set) var chatRoomID : String
     private var unreadCount : Int = 0
+    private var cryptoManager : CryptoManager!
     
     //MARK: - intent(s)
     func sendMessage(messageContent: String, type : MessageType)
     {
-        let message = Message(content: messageContent, senderId: Helper.getCurrentUserID(), type: type, duration: 0)
+        var message = Message(content: messageContent, type: type, isOutgoing: true, duration: 0)
+        message.message = self.cryptoManager.encrypt(text: message.message, ExternalPublicKeyStr: self.otherUser.value.publicKey)
         sendMessage(message)
     }
     
@@ -44,8 +55,11 @@ class ChatVM
         let chatRoomRefForFriend = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(otherUser.value.userID).child(chatRoomID)
         let chatRoomRefForCurrentUSer = FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(chatRoomID)
         
+        var friendMessage = message
+        friendMessage.isOutgoing = false
+        
         //set last message for both users
-        chatRoomRefForFriend.child(Constants.kLASTMESSAGE).setValue(message.messageDictionary())
+        chatRoomRefForFriend.child(Constants.kLASTMESSAGE).setValue(friendMessage.messageDictionary())
         chatRoomRefForCurrentUSer.child(Constants.kLASTMESSAGE).setValue(message.messageDictionary())
         
         //save the message for current user
@@ -53,8 +67,8 @@ class ChatVM
             .setValue(message.messageDictionary())
         
         //save message for the other user
-        chatRoomRefForFriend.child(Constants.kMESSAGES).child(message.messageId)
-            .setValue(message.messageDictionary())
+        chatRoomRefForFriend.child(Constants.kMESSAGES).child(friendMessage.messageId)
+            .setValue(friendMessage.messageDictionary())
         
         //increase unread messages counter for friend
         chatRoomRefForFriend.child(Constants.kUNREADCOUNTER)
@@ -66,6 +80,14 @@ class ChatVM
     }
     
     //MARK: - Helper Funcs
+    private func getEncryptionKeys()
+    {
+        let privateKeyStr = KeyChainManager.getChatterPrivateKeyStr()
+        if let privateKey = CryptoManager.getPrivateKeyFromString(privateKeyStr: privateKeyStr)
+        {
+            cryptoManager = CryptoManager(privateKey: privateKey)
+        }
+    }
     
     private func getMessagesFromDB()
     {
@@ -80,10 +102,13 @@ class ChatVM
                     self.resetUnreadCounter()
                     
                     var msgArr = self.messages.value
-                    let message = Message(dictionaryMessage)
+                    var message = Message(dictionaryMessage)
+                    
+                    //decrypt messages
+                    message.message = self.cryptoManager.decrypt(text: message.message, ExternalPublicKeyStr: self.otherUser.value.publicKey)
+                    
                     msgArr.append(message)
                     self.messages.accept(msgArr)
-                    
                     
                 }
             })
@@ -170,7 +195,7 @@ class ChatVM
     
     func uploadImage(image: UIImage)
     {
-        var imageMessage = Message(content: "0", senderId: Helper.getCurrentUserID(), type: .image, duration: 0)
+        var imageMessage = Message(content: "0", type: .image, isOutgoing: true, duration: 0)
         let date = imageMessage.date.chatterStringFromDate()
         let imgRef = FireBaseStore.sharedInstance.storageRef.child(Constants.kIMAGESTORE).child(Helper.getCurrentUserID()).child(chatRoomID).child("\(date).jpg")
         let task = imgRef.putData(image.jpegData(compressionQuality: 0.4)!)
@@ -185,15 +210,11 @@ class ChatVM
                     if let pngRepresentation = image.jpegData(compressionQuality: 0.1)
                     {
                         self.storeFileLocally(data: pngRepresentation, forURL: localFileURL)
-                        imageMessage.message = url
+                        imageMessage.message = self.cryptoManager.encrypt(text: url, ExternalPublicKeyStr: self.otherUser.value.publicKey)
                         self.sendMessage(imageMessage)
-                        
                         task.removeAllObservers()
                     }
-                    
-                    
                 }
-                
             }
         }
         
@@ -210,7 +231,7 @@ class ChatVM
     {
         do
         {
-            var voiceNoteMessage = Message(content: "0", senderId: Helper.getCurrentUserID(), type: .audio, duration: duration)
+            var voiceNoteMessage = Message(content: "0", type: .audio, isOutgoing: true, duration: duration)
             let date = voiceNoteMessage.date.chatterStringFromDate()
             let voiceNoteRef = FireBaseStore.sharedInstance.storageRef.child(Constants.kVOICENOTESTORE).child(Helper.getCurrentUserID()).child(chatRoomID).child("\(date).caf")
             let audioData = try Data(contentsOf: FileManager.tempVoiceNoteDir())
@@ -224,7 +245,7 @@ class ChatVM
                         let localFileURL = URL.chatAudioFileUrl(chatRoomID: self.chatRoomID, msgDate: voiceNoteMessage.date)
                         
                         self.storeFileLocally(data: audioData, forURL: localFileURL)
-                        voiceNoteMessage.message = url
+                        voiceNoteMessage.message = self.cryptoManager.encrypt(text: url, ExternalPublicKeyStr: self.otherUser.value.publicKey)
                         self.sendMessage(voiceNoteMessage)
                         task.removeAllObservers()
                     }

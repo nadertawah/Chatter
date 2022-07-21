@@ -36,11 +36,14 @@ class LoginRegisterVM
         {
             Auth.auth().createUser(withEmail: email, password: password)
             {
-                result , error  in
+                [weak self] result , error  in
+                guard let self = self else {return}
                 if result != nil
                 {
+                    let keys = self.createAndSaveCryptKeys()
+                    
                     let UID = result!.user.uid
-                    let user = User(userID: UID, createdAt: Date(), updatedAt: Date(), email: email, fullName: name, avatar: avatar.imageToString())
+                    let user = User(userID: UID, createdAt: Date(), updatedAt: Date(), email: email, fullName: name, avatar: avatar.imageToString(), publicKey: keys.publicKeyToString())
                     
                     //save to firebase db
                     FireBaseDB.sharedInstance.DBref.child(Constants.kALLUSERS).child(UID).setValue(user.userDictionary())
@@ -51,6 +54,18 @@ class LoginRegisterVM
                 }
             }
         }
+    }
+    
+    private func createAndSaveCryptKeys() -> CryptoManager
+    {
+        let cryptoManager = CryptoManager()
         
+        //save privateKey to keychain
+        KeyChainManager.save(data: cryptoManager.privateKey.rawRepresentation, account: Helper.getCurrentUserID())
+        
+        //save publicKey to FireBase
+        FireBaseDB.sharedInstance.setPublicKey(key: cryptoManager.publicKeyToString())
+        
+        return cryptoManager
     }
 }

@@ -61,6 +61,9 @@
                 </variation>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <constraints>
+                <constraint firstItem="yji-Hd-Alm" firstAttribute="width" relation="lessThanOrEqual" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="0.8" id="ciy-m1-Yhf"/>
+            </constraints>
             <connections>
                 <outlet property="backView" destination="yji-Hd-Alm" id="chZ-1A-Sxf"/>
                 <outlet property="imgView" destination="rV9-eh-TO8" id="sfd-eq-Oe7"/>

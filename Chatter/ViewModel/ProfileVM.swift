@@ -22,7 +22,7 @@ class ProfileVM
     }
     
     //MARK: - Var(s)
-    private(set) var user = BehaviorRelay<User>(value: User(userID: "", createdAt: Date(), updatedAt: Date(), email: "", fullName: "", avatar: ""))
+    private(set) var user = BehaviorRelay<User>(value: User(userID: "", createdAt: Date(), updatedAt: Date(), email: "", fullName: "", avatar: "", publicKey: ""))
     
     //MARK: - intent(s)
     func logout(completion : @escaping ()->())
@@ -48,7 +48,8 @@ class ProfileVM
             .observe(.value, with: {[weak self] snapshot in
                 if let dictionaryUser = snapshot.value as? NSDictionary
                 {
-                    let user = User(dictionaryUser)
+                    let user = User([snapshot.key: dictionaryUser])
+                    
                     self?.user.accept(user)
                 }
                 

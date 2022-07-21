@@ -21,7 +21,7 @@ extension UIViewController
     }
 }
 
-//hide keyBoard when typing in textfields
+//hide keyBoard after typing in textfields
 extension UIViewController
 {
     func hideKeyboardWhenTappedAround()
