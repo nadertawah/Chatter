@@ -32,10 +32,19 @@ MVVM
 'RxSwift'
 
 ## Screenshots
-![IMG_0782](https://user-images.githubusercontent.com/38067971/180325646-841dc8c7-d5b0-4c4c-96c8-1927be544388.PNG)
-![IMG_0783](https://user-images.githubusercontent.com/38067971/180325649-6a107f81-af38-4d77-a83a-a6fca1067380.PNG)
-![IMG_0784](https://user-images.githubusercontent.com/38067971/180325650-dd0dea50-c496-4fe1-8333-dcd5d1572730.PNG)
-![IMG_0785](https://user-images.githubusercontent.com/38067971/180325656-6f2dd7c3-c08d-4ef1-8de9-6d93a02964ed.PNG)
-![IMG_0786](https://user-images.githubusercontent.com/38067971/180325668-ffa24e5e-62bf-4048-bb42-1445d81c4c6e.PNG)
-![IMG_0787](https://user-images.githubusercontent.com/38067971/180325674-a7514315-f866-4bef-957a-916b3bc3adb6.PNG)
-![IMG_0788](https://user-images.githubusercontent.com/38067971/180325686-df8dd765-d666-4074-8521-f946e5d3771c.PNG)
+
+![IMG_0783](https://user-images.githubusercontent.com/38067971/180326008-ed376ed3-c201-457a-8493-aa7295bb0cf5.PNG)
+
+![IMG_0782](https://user-images.githubusercontent.com/38067971/180326024-c85c0c09-9849-4a21-89c9-9d83171d4c14.PNG)
+
+![IMG_0784](https://user-images.githubusercontent.com/38067971/180326120-f17601e9-4f37-4685-b540-5a731c400d21.PNG)
+
+![IMG_0788](https://user-images.githubusercontent.com/38067971/180326159-275e5c97-c9d2-46c5-8c19-59b9b440c402.PNG)
+
+![IMG_0785](https://user-images.githubusercontent.com/38067971/180326177-45da56d6-b3f7-4dfd-bc6b-685a68780de7.PNG)
+
+![IMG_0786](https://user-images.githubusercontent.com/38067971/180326198-c5557dca-e09c-45c7-a7dd-630d654b051d.PNG)
+
+![IMG_0787](https://user-images.githubusercontent.com/38067971/180326233-5dc69a9a-caa2-4895-b0e2-ee6109c6fdde.PNG)
+
+
