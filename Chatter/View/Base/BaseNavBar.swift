@@ -20,6 +20,7 @@ class BaseNavBar : UINavigationController
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.chatterGreyColor]
         navigationBar.tintColor = UIColor.chatterGreyColor
         navigationBar.backgroundColor = UIColor.chatterGreenColor
+        navigationBar.barTintColor =  UIColor.chatterGreenColor
     }
     
     

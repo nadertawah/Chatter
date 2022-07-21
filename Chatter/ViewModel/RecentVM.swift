@@ -26,7 +26,7 @@ class RecentVM
     //MARK: - Helper Funcs
     private func handleLostPrivateKey()
     {
-        KeyChainManager.deleteCurrentKeyChain()  //just for testing
+        //KeyChainManager.deleteCurrentKeyChain()  //just for testing
         
         //get private key from keychain
         let privateKeyStr = KeyChainManager.getChatterPrivateKeyStr()
@@ -168,9 +168,9 @@ class RecentVM
             FireBaseDB.sharedInstance.DBref.child(Constants.kMESSAGES).child(Helper.getCurrentUserID()).child(chatroomID).child(Constants.kMESSAGES).removeValue()
             
             //get chat request
-            FireBaseDB.sharedInstance.DBref.child(Constants.kCHATREQUESTS).child(chatroomID).observeSingleEvent(of: .value)
+            FireBaseDB.sharedInstance.DBref.child(Constants.kCHATREQUESTS).child(chatroomID).getData
             {
-                chatRequestSnapshot in
+                _ , chatRequestSnapshot  in
                 guard let chatRequestDict = chatRequestSnapshot.value as? NSDictionary, let keysAndMessagesDict = chatRequestDict[Constants.kMESSAGES] as? NSDictionary ,let friendUnreadCount = chatRequestDict[Constants.kUNREADCOUNTER] as? Int else{return}
                 
                 //get friend's new public key

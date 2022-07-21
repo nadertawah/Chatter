@@ -104,6 +104,9 @@ class LoginRegisterView: UIViewController
     //MARK: - Helper Funcs
     private func setUI()
     {
+        //add gradient layer
+        self.view.addGradientLayer()
+        
         //set textfields placeholders
         NameTF.attributedPlaceholder = placeHolderString(str: "Name")
         EmailTF.attributedPlaceholder = placeHolderString(str: "Email")

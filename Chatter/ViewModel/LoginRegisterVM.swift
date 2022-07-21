@@ -64,7 +64,7 @@ class LoginRegisterVM
         KeyChainManager.save(data: cryptoManager.privateKey.rawRepresentation, account: Helper.getCurrentUserID())
         
         //save publicKey to FireBase
-        FireBaseDB.sharedInstance.setPublicKey(key: cryptoManager.publicKeyToString())
+       // FireBaseDB.sharedInstance.setPublicKey(key: cryptoManager.publicKeyToString())
         
         return cryptoManager
     }

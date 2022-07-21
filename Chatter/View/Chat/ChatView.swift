@@ -211,6 +211,7 @@ class ChatView: UIViewController
         {[weak self] in
             guard let self = self else {return}
             self.keyboardConstriant.constant = 0.0
+            self.scrollToBottom()
         }
     }
     

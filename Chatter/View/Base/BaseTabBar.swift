@@ -48,7 +48,7 @@ class BaseTabBar:  UITabBarController
         self.tabBar.tintColor = UIColor.chatterGreenColor
         self.tabBar.backgroundColor = UIColor.chatterGreyColor
         self.tabBar.unselectedItemTintColor = .white
-        
+        self.tabBar.barTintColor = UIColor.chatterGreyColor
         //override dark mode
         self.overrideUserInterfaceStyle = .light
         
