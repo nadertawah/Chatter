@@ -20,8 +20,9 @@ swift
 ### Tools
 Xcode
 
-### UI Framework
+### Frameworks
 UIKit
+CryptoKit
 
 ## Design Pattern
 MVVM
